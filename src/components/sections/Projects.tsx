@@ -14,9 +14,9 @@ const projects = [
     tech: ["Laravel", "PHP", "MySQL", "API", "JavaScript", "Bootstrap"],
     liveUrl: "https://lms.cyberface-solutions.com/",
     images: [
-      "/images/projects/ketan-school/1.png",
-      "/images/projects/ketan-school/2.png",
-      "/images/projects/ketan-school/3.png",
+      "/images/projects/ketan-school/1.PNG",
+      "/images/projects/ketan-school/2.PNG",
+      "/images/projects/ketan-school/3.PNG",
     ],
   },
   {
@@ -27,11 +27,11 @@ const projects = [
     tech: ["Laravel", "PHP", "MySQL", "JavaScript", "Bootstrap", "Breeze"],
     liveUrl: "https://example.com",
     images: [
-      "/images/projects/lms-dashboard/1.png",
-      "/images/projects/lms-dashboard/2.png",
-      "/images/projects/lms-dashboard/3.png",
-      "/images/projects/lms-dashboard/4.png",
-      "/images/projects/lms-dashboard/5.png",
+      "/images/projects/lms-dashboard/1.PNG",
+      "/images/projects/lms-dashboard/2.PNG",
+      "/images/projects/lms-dashboard/3.PNG",
+      "/images/projects/lms-dashboard/4.PNG",
+      "/images/projects/lms-dashboard/5.PNG",
     ],
   },
   {
@@ -42,10 +42,10 @@ const projects = [
     tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
     liveUrl: "https://example.com",
     images: [
-      "/images/projects/taskr-app/1.png",
-      "/images/projects/taskr-app/2.png",
-      "/images/projects/taskr-app/3.png",
-      "/images/projects/taskr-app/4.png",
+      "/images/projects/taskr-app/1.PNG",
+      "/images/projects/taskr-app/2.PNG",
+      "/images/projects/taskr-app/3.PNG",
+      "/images/projects/taskr-app/4.PNG",
     ],
   },
 ];
