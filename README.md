@@ -137,3 +137,7 @@ Feel free to reach out if you have any questions or suggestions!
 - Email: your.email@example.com
 - GitHub: [@yourusername](https://github.com/yourusername)
 - LinkedIn: [Your Name](https://linkedin.com/in/yourusername)
+
+# portfolio
+
+Personal portfolio website showcasing my projects, skills, and experience as a full-stack developer.
