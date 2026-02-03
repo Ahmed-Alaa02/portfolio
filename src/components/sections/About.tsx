@@ -31,7 +31,7 @@ export default function About() {
           >
             <div className="space-y-6 text-lg text-dark-400 leading-relaxed">
               <p>
-                I'm a passionate{" "}
+                I&apos;m a passionate{" "}
                 <span className="text-white font-semibold">
                   Full-Stack Web Developer
                 </span>{" "}
@@ -48,9 +48,9 @@ export default function About() {
                 <span className="text-white font-semibold">
                   Engineering Mindset
                 </span>{" "}
-                : I don't just write code, I solve problems. I focus on clean
-                architecture, performance, and writing maintainable code that
-                can grow with your business.
+                : I don&apos;t just write code, I solve problems. I focus on
+                clean architecture, performance, and writing maintainable code
+                that can grow with your business.
               </p>
               <div>
                 <p>I have worked on:</p>
@@ -62,7 +62,7 @@ export default function About() {
                 </ul>
               </div>
               <div>
-                <p>I'm committed to:</p>
+                <p>I&apos;m committed to:</p>
                 <ul className="list-disc list-inside">
                   <li>Clear communication</li>
                   <li>Meeting deadlines</li>
@@ -70,8 +70,9 @@ export default function About() {
                 </ul>
               </div>
               <p>
-                If you're looking for a reliable developer who understands both
-                the technical side and the business goals, let's work together.
+                If you&apos;re looking for a reliable developer who understands
+                both the technical side and the business goals, let&apos;s work
+                together.
               </p>
             </div>
 

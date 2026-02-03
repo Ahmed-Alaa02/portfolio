@@ -26,7 +26,7 @@ export default function Hero() {
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
             variants={slideDown}
           >
-            Hi, I'm <span className="gradient-text">Ahmed Alaa</span>
+            Hi, I&apos;m <span className="gradient-text">Ahmed Alaa</span>
           </motion.h1>
 
           <motion.p
