@@ -4,22 +4,63 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { fadeIn, slideUp } from "@/lib/animations";
+import Swal from "sweetalert2";
+import emailjs from "@emailjs/browser";
+
+// TODO: Replace these with your EmailJS credentials from https://www.emailjs.com/
+const EMAILJS_SERVICE_ID = "service_e6vgwyh";
+const EMAILJS_TEMPLATE_ID = "template_l6kd1ev";
+const EMAILJS_PUBLIC_KEY = "uVdXhgcBD9eT8lK4S";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY,
+      );
+
+      Swal.fire({
+        title: "Message Sent!",
+        text: "Thank you for your message! I'll get back to you soon.",
+        icon: "success",
+        confirmButtonText: "Great!",
+        confirmButtonColor: "#6366f1",
+        background: "#1a1a2e",
+        color: "#ffffff",
+      });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to send message. Please try again or contact me directly via email.",
+        icon: "error",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#6366f1",
+        background: "#1a1a2e",
+        color: "#ffffff",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -32,7 +73,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-6 md:px-12 lg:px-24">
+    <section id="contact-section" className="py-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-4xl mx-auto">
         <motion.div
           ref={ref}
@@ -75,7 +116,8 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
                   placeholder="Your name"
                 />
               </div>
@@ -94,7 +136,8 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -112,19 +155,21 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white resize-none"
+                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white resize-none disabled:opacity-50"
                   placeholder="Your message..."
                 />
               </div>
 
               <motion.button
                 type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-primary-600 transition-all glow-on-hover"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                className="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-primary-600 transition-all glow-on-hover disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </motion.button>
             </motion.form>
 

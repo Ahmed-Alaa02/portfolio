@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import Swal from "sweetalert2";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const projects = [
   {
@@ -23,15 +26,15 @@ const projects = [
     id: 2,
     title: "School LMS Dashboard",
     description:
-      "Real-time weather application with location search, 7-day forecasts, and beautiful data visualizations.",
+      "Modern LMS dashboard enabling efficient school management with role-based access and streamlined academic operations.",
     tech: ["Laravel", "PHP", "MySQL", "JavaScript", "Bootstrap", "Breeze"],
-    liveUrl: "https://example.com",
+    liveUrl: "#contact",
+    isRequestDemoDashboard: true,
     images: [
       "/images/projects/lms-dashboard/1.PNG",
       "/images/projects/lms-dashboard/2.PNG",
       "/images/projects/lms-dashboard/3.PNG",
       "/images/projects/lms-dashboard/4.PNG",
-      "/images/projects/lms-dashboard/5.PNG",
     ],
   },
   {
@@ -40,7 +43,8 @@ const projects = [
     description:
       "A lightweight task management app for creating, organizing, and tracking tasks with a clean and intuitive interface.",
     tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
-    liveUrl: "https://example.com",
+    liveUrl: "#contact",
+    isRequestDemoTaskr: true,
     images: [
       "/images/projects/taskr-app/1.PNG",
       "/images/projects/taskr-app/2.PNG",
@@ -52,6 +56,7 @@ const projects = [
 
 const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = project.images || [];
 
   const nextImage = () => {
@@ -66,143 +71,261 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
     setCurrentImageIndex(index);
   };
 
+  const openLightbox = () => {
+    setLightboxOpen(true);
+  };
+
+  const handleRequestDemoDashboard = (e: React.MouseEvent) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Request Live Demo",
+      text: "Please fill in your details below to request a live demo for the School LMS Dashboard.",
+      icon: "info",
+      confirmButtonText: "Go to Contact Form",
+      confirmButtonColor: "#6366f1",
+      background: "#1a1a2e",
+      color: "#ffffff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          document
+            .getElementById("contact-section")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      }
+    });
+  };
+  const handleRequestDemoTaskr = (e: React.MouseEvent) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Request Live Demo",
+      text: "Please fill in your details below to request a live demo for the Taskr App.",
+      icon: "info",
+      confirmButtonText: "Go to Contact Form",
+      confirmButtonColor: "#6366f1",
+      background: "#1a1a2e",
+      color: "#ffffff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          document
+            .getElementById("contact-section")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      }
+    });
+  };
+
+  // Prepare slides for lightbox
+  const slides = images.map((src) => ({ src }));
+
   return (
-    <motion.div
-      variants={staggerItem}
-      className="group relative glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300"
-      whileHover={{ y: -8 }}
-    >
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/0 to-purple-500/0 group-hover:from-primary-500/20 group-hover:to-purple-500/20 transition-all duration-300 -z-10"></div>
+    <>
+      {/* Lightbox */}
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        index={currentImageIndex}
+        slides={slides}
+        styles={{
+          container: { backgroundColor: "rgba(0, 0, 0, 0.9)" },
+        }}
+      />
 
-      {/* Image Slider */}
-      {images.length > 0 && (
-        <div className="relative h-48 bg-dark-100 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentImageIndex}
-              src={images[currentImageIndex]}
-              alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.3 }}
-            />
-          </AnimatePresence>
+      <motion.div
+        variants={staggerItem}
+        className="group relative glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300"
+        whileHover={{ y: -8 }}
+      >
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/0 to-purple-500/0 group-hover:from-primary-500/20 group-hover:to-purple-500/20 transition-all duration-300 -z-10"></div>
 
-          {/* Navigation Arrows */}
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                aria-label="Previous image"
-              >
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                aria-label="Next image"
-              >
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </>
-          )}
-
-          {/* Dot Indicators */}
-          {images.length > 1 && (
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToImage(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentImageIndex
-                      ? "bg-white w-6"
-                      : "bg-white/50 hover:bg-white/70"
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-400 transition-colors">
-          {project.title}
-        </h3>
-
-        <p className="text-dark-400 mb-4 leading-relaxed">
-          {project.description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-sm bg-dark-100 rounded-full text-dark-600 border border-dark-200"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-4">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+        {/* Image Slider */}
+        {images.length > 0 && (
+          <div className="relative h-48 bg-dark-100 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIndex}
+                src={images[currentImageIndex]}
+                alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={openLightbox}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.3 }}
               />
-            </svg>
-            Live Demo
-          </a>
+            </AnimatePresence>
+
+            {/* Click to expand hint */}
+            <div className="absolute top-2 right-2 px-2 py-1 bg-black/50 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              Click to expand
+            </div>
+
+            {/* Navigation Arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                  aria-label="Previous image"
+                >
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                  aria-label="Next image"
+                >
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </>
+            )}
+
+            {/* Dot Indicators */}
+            {images.length > 1 && (
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goToImage(index);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentImageIndex
+                        ? "bg-white w-6"
+                        : "bg-white/50 hover:bg-white/70"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Content */}
+        <div className="p-6">
+          <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-400 transition-colors">
+            {project.title}
+          </h3>
+
+          <p className="text-dark-400 mb-4 leading-relaxed">
+            {project.description}
+          </p>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tech.map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-sm bg-dark-100 rounded-full text-dark-600 border border-dark-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-4">
+            {project.isRequestDemoDashboard ? (
+              <button
+                onClick={handleRequestDemoDashboard}
+                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+                Request Live Demo
+              </button>
+            ) : project.isRequestDemoTaskr ? (
+              <button
+                onClick={handleRequestDemoTaskr}
+                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+                Request Live Demo
+              </button>
+            ) : (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+                Live Demo
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 

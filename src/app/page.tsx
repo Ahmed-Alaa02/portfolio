@@ -17,10 +17,9 @@ export default function Home() {
       <footer className="py-8 px-6 border-t border-dark-200">
         <div className="max-w-7xl mx-auto text-center text-dark-400">
           <p className="text-sm">
-            © {new Date().getFullYear()} Your Name. Built with{" "}
+            © {new Date().getFullYear()} Ahmed Alaa. Built with{" "}
             <span className="text-primary-500">Next.js</span>,{" "}
-            <span className="text-primary-500">Tailwind CSS</span>, and{" "}
-            <span className="text-primary-500">Framer Motion</span>.
+            <span className="text-primary-500">Tailwind CSS</span>
           </p>
         </div>
       </footer>
