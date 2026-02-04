@@ -6,6 +6,8 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 10, 10, 10;
   --background-end-rgb: 0, 0, 0;
+  --font-inter: "Inter", sans-serif;
+  --font-cairo: "Cairo", sans-serif;
 }
 
 * {
@@ -18,6 +20,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Base font - Inter for English */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -27,6 +30,16 @@ body {
     )
     rgb(var(--background-start-rgb));
   overflow-x: hidden;
+  font-family: var(--font-inter);
+}
+
+/* Arabic font - Cairo for RTL */
+html[dir="rtl"] body {
+  font-family: var(--font-cairo);
+}
+
+html[dir="rtl"] * {
+  font-family: inherit;
 }
 
 /* Custom Scrollbar */
@@ -67,4 +80,36 @@ body {
   box-shadow:
     0 0 20px rgba(14, 165, 233, 0.4),
     0 0 40px rgba(14, 165, 233, 0.2);
+}
+
+/* RTL Specific Adjustments */
+html[dir="rtl"] .gradient-text {
+  background: linear-gradient(to left, #0ea5e9, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Flip icons in RTL for directional arrows */
+html[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Fix text alignment in RTL */
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* Adjust list markers for RTL */
+html[dir="rtl"] ul {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .list-inside {
+  padding-right: 0;
 }

@@ -2,8 +2,12 @@
 
 import { motion } from "framer-motion";
 import { fadeIn, slideDown } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { translations, isRTL } = useLanguage();
+  const t = translations.hero;
+
   const scrollToProjects = () => {
     const projectsSection = document.getElementById("projects");
     projectsSection?.scrollIntoView({ behavior: "smooth" });
@@ -26,23 +30,21 @@ export default function Hero() {
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
             variants={slideDown}
           >
-            Hi, I&apos;m <span className="gradient-text">Ahmed Alaa</span>
+            {t.greeting} <span className="gradient-text">{t.name}</span>
           </motion.h1>
 
           <motion.p
             className="text-xl md:text-2xl lg:text-3xl text-dark-500 mb-8"
             variants={slideDown}
           >
-            Full-Stack Web Developer
+            {t.title}
           </motion.p>
 
           <motion.p
             className="text-lg md:text-xl text-dark-400 max-w-3xl mx-auto mb-12"
             variants={slideDown}
           >
-            Applying engineering thinking to build reliable and scalable
-            full-stack web applications. Clean architecture, performance, and
-            maintainability first.
+            {t.description}
           </motion.p>
 
           <motion.button
@@ -52,9 +54,9 @@ export default function Hero() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">View Projects</span>
+            <span className="relative z-10">{t.viewProjects}</span>
             <svg
-              className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform"
+              className={`w-5 h-5 relative z-10 group-hover:translate-y-1 transition-transform ${isRTL ? "rtl-flip" : ""}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

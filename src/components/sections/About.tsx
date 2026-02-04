@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { fadeIn, slideUp } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { translations } = useLanguage();
+  const t = translations.about;
 
   return (
     <section className="py-20 px-6 md:px-12 lg:px-24">
@@ -22,7 +25,7 @@ export default function About() {
             className="text-4xl md:text-5xl font-bold mb-8 text-center"
             variants={slideUp}
           >
-            About <span className="gradient-text">Me</span>
+            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.div
@@ -31,49 +34,35 @@ export default function About() {
           >
             <div className="space-y-6 text-lg text-dark-400 leading-relaxed">
               <p>
-                I&apos;m a passionate{" "}
-                <span className="text-white font-semibold">
-                  Full-Stack Web Developer
-                </span>{" "}
-                with a strong engineering background and a passion for building
-                clean, scalable, and user-friendly web applications.
+                {t.intro}{" "}
+                <span className="text-white font-semibold">{t.role}</span>{" "}
+                {t.introText}
               </p>
+              <p>{t.specialize}</p>
               <p>
-                I specialize in Laravel, PHP, JavaScript, HTML, CSS, and MySQL,
-                with hands-on experience in developing full systems from
-                database design to polished user interfaces.
-              </p>
-              <p>
-                What sets me apart is my{" "}
+                {t.whatSetsApart}{" "}
                 <span className="text-white font-semibold">
-                  Engineering Mindset
-                </span>{" "}
-                : I don&apos;t just write code, I solve problems. I focus on
-                clean architecture, performance, and writing maintainable code
-                that can grow with your business.
+                  {t.engineeringMindset}
+                </span>
+                {t.mindsetText}
               </p>
               <div>
-                <p>I have worked on:</p>
+                <p>{t.workedOn}</p>
                 <ul className="list-disc list-inside">
-                  <li>Educational management systems</li>
-                  <li>Dashboards and admin panels</li>
-                  <li>RESTful APIs and database-driven applications</li>
-                  <li>Frontend interactions and UI logic</li>
+                  {t.workedOnList.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div>
-                <p>I&apos;m committed to:</p>
+                <p>{t.committed}</p>
                 <ul className="list-disc list-inside">
-                  <li>Clear communication</li>
-                  <li>Meeting deadlines</li>
-                  <li>Writing clean, well-structured code</li>
+                  {t.committedList.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
-              <p>
-                If you&apos;re looking for a reliable developer who understands
-                both the technical side and the business goals, let&apos;s work
-                together.
-              </p>
+              <p>{t.callToAction}</p>
             </div>
 
             <motion.div
@@ -81,17 +70,17 @@ export default function About() {
               variants={slideUp}
             >
               <h3 className="text-xl font-semibold mb-4 text-white">
-                Core Values
+                {t.coreValues}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-start gap-3">
                   <span className="text-2xl">🎯</span>
                   <div>
                     <h4 className="font-semibold text-white mb-1">
-                      Problem-Solving
+                      {t.values.problemSolving.title}
                     </h4>
                     <p className="text-sm text-dark-400">
-                      Finding elegant solutions to complex challenges
+                      {t.values.problemSolving.description}
                     </p>
                   </div>
                 </div>
@@ -99,10 +88,10 @@ export default function About() {
                   <span className="text-2xl">📚</span>
                   <div>
                     <h4 className="font-semibold text-white mb-1">
-                      Continuous Learning
+                      {t.values.continuousLearning.title}
                     </h4>
                     <p className="text-sm text-dark-400">
-                      Always growing and adapting to new technologies
+                      {t.values.continuousLearning.description}
                     </p>
                   </div>
                 </div>
@@ -110,10 +99,10 @@ export default function About() {
                   <span className="text-2xl">✨</span>
                   <div>
                     <h4 className="font-semibold text-white mb-1">
-                      Quality First
+                      {t.values.qualityFirst.title}
                     </h4>
                     <p className="text-sm text-dark-400">
-                      Commitment to excellence in every detail
+                      {t.values.qualityFirst.description}
                     </p>
                   </div>
                 </div>

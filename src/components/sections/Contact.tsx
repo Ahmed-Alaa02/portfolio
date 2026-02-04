@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { fadeIn, slideUp } from "@/lib/animations";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "@/context/LanguageContext";
 
 // TODO: Replace these with your EmailJS credentials from https://www.emailjs.com/
 const EMAILJS_SERVICE_ID = "service_e6vgwyh";
@@ -21,6 +22,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const { translations, isRTL } = useLanguage();
+  const t = translations.contact;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,10 +42,10 @@ export default function Contact() {
       );
 
       Swal.fire({
-        title: "Message Sent!",
-        text: "Thank you for your message! I'll get back to you soon.",
+        title: t.alerts.successTitle,
+        text: t.alerts.successText,
         icon: "success",
-        confirmButtonText: "Great!",
+        confirmButtonText: t.alerts.successButton,
         confirmButtonColor: "#6366f1",
         background: "#1a1a2e",
         color: "#ffffff",
@@ -50,10 +53,10 @@ export default function Contact() {
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       Swal.fire({
-        title: "Error!",
-        text: "Failed to send message. Please try again or contact me directly via email.",
+        title: t.alerts.errorTitle,
+        text: t.alerts.errorText,
         icon: "error",
-        confirmButtonText: "OK",
+        confirmButtonText: t.alerts.errorButton,
         confirmButtonColor: "#6366f1",
         background: "#1a1a2e",
         color: "#ffffff",
@@ -85,14 +88,14 @@ export default function Contact() {
             className="text-4xl md:text-5xl font-bold mb-4 text-center"
             variants={slideUp}
           >
-            Get In <span className="gradient-text">Touch</span>
+            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
             className="text-dark-400 text-center mb-12 text-lg"
             variants={slideUp}
           >
-            Have a project in mind or just want to chat? Feel free to reach out!
+            {t.subtitle}
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -107,7 +110,7 @@ export default function Contact() {
                   htmlFor="name"
                   className="block text-sm font-medium mb-2 text-dark-600"
                 >
-                  Name
+                  {t.form.name}
                 </label>
                 <input
                   type="text"
@@ -118,7 +121,8 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
-                  placeholder="Your name"
+                  placeholder={t.form.namePlaceholder}
+                  dir={isRTL ? "rtl" : "ltr"}
                 />
               </div>
 
@@ -127,7 +131,7 @@ export default function Contact() {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2 text-dark-600"
                 >
-                  Email
+                  {t.form.email}
                 </label>
                 <input
                   type="email"
@@ -138,7 +142,8 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
-                  placeholder="your.email@example.com"
+                  placeholder={t.form.emailPlaceholder}
+                  dir={isRTL ? "rtl" : "ltr"}
                 />
               </div>
 
@@ -147,7 +152,7 @@ export default function Contact() {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2 text-dark-600"
                 >
-                  Message
+                  {t.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -158,7 +163,8 @@ export default function Contact() {
                   disabled={isSubmitting}
                   rows={5}
                   className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white resize-none disabled:opacity-50"
-                  placeholder="Your message..."
+                  placeholder={t.form.messagePlaceholder}
+                  dir={isRTL ? "rtl" : "ltr"}
                 />
               </div>
 
@@ -169,16 +175,14 @@ export default function Contact() {
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? t.form.sending : t.form.send}
               </motion.button>
             </motion.form>
 
             {/* Contact Info & Social Links */}
             <motion.div className="space-y-8" variants={slideUp}>
               <div className="glass rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">
-                  Contact Information
-                </h3>
+                <h3 className="text-xl font-semibold mb-6">{t.info.title}</h3>
 
                 <div className="space-y-4">
                   <a
@@ -201,7 +205,7 @@ export default function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-dark-500">Email</p>
+                      <p className="text-sm text-dark-500">{t.info.email}</p>
                       <p className="font-medium">ahmed.alaa02@outlook.com</p>
                     </div>
                   </a>
@@ -226,15 +230,17 @@ export default function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-dark-500">Phone</p>
-                      <p className="font-medium">+201010137937</p>
+                      <p className="text-sm text-dark-500">{t.info.phone}</p>
+                      <p className="font-medium" dir="ltr">
+                        +201010137937
+                      </p>
                     </div>
                   </a>
                 </div>
               </div>
 
               <div className="glass rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">Follow Me</h3>
+                <h3 className="text-xl font-semibold mb-6">{t.social.title}</h3>
 
                 <div className="flex gap-4">
                   <a

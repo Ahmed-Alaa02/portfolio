@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 const skills = {
   frontend: [
@@ -46,6 +47,8 @@ const SkillBadge = ({ skill }: { skill: { name: string; icon: string } }) => {
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { translations } = useLanguage();
+  const t = translations.skills;
 
   return (
     <section className="py-20 px-6 md:px-12 lg:px-24">
@@ -60,20 +63,20 @@ export default function Skills() {
             className="text-4xl md:text-5xl font-bold mb-4 text-center"
             variants={staggerItem}
           >
-            Skills & <span className="gradient-text">Technologies</span>
+            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
             className="text-dark-400 text-center mb-16 text-lg max-w-2xl mx-auto"
             variants={staggerItem}
           >
-            Technologies and tools I use to bring ideas to life.
+            {t.subtitle}
           </motion.p>
 
           {/* Frontend */}
           <motion.div className="mb-12" variants={staggerItem}>
             <h3 className="text-2xl font-semibold mb-6 text-primary-400">
-              Frontend
+              {t.frontend}
             </h3>
             <motion.div
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -88,7 +91,7 @@ export default function Skills() {
           {/* Backend */}
           <motion.div className="mb-12" variants={staggerItem}>
             <h3 className="text-2xl font-semibold mb-6 text-purple-400">
-              Backend & Database
+              {t.backend}
             </h3>
             <motion.div
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -103,7 +106,7 @@ export default function Skills() {
           {/* Tools */}
           <motion.div variants={staggerItem}>
             <h3 className="text-2xl font-semibold mb-6 text-pink-400">
-              Tools & Platforms
+              {t.tools}
             </h3>
             <motion.div
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"

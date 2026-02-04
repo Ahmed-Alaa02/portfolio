@@ -7,13 +7,12 @@ import { staggerContainer, staggerItem } from "@/lib/animations";
 import Swal from "sweetalert2";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { useLanguage } from "@/context/LanguageContext";
 
 const projects = [
   {
     id: 1,
-    title: "Ketan School Website",
-    description:
-      "A modern, responsive school website designed to present content clearly and deliver a smooth user experience.",
+    titleKey: "ketanSchool" as const,
     tech: ["Laravel", "PHP", "MySQL", "API", "JavaScript", "Bootstrap"],
     liveUrl: "https://lms.cyberface-solutions.com/",
     images: [
@@ -24,9 +23,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "School LMS Dashboard",
-    description:
-      "Modern LMS dashboard enabling efficient school management with role-based access and streamlined academic operations.",
+    titleKey: "lmsDashboard" as const,
     tech: ["Laravel", "PHP", "MySQL", "JavaScript", "Bootstrap", "Breeze"],
     liveUrl: "#contact",
     isRequestDemoDashboard: true,
@@ -39,9 +36,7 @@ const projects = [
   },
   {
     id: 3,
-    title: "TASKR - Task Management",
-    description:
-      "A lightweight task management app for creating, organizing, and tracking tasks with a clean and intuitive interface.",
+    titleKey: "taskr" as const,
     tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
     liveUrl: "#contact",
     isRequestDemoTaskr: true,
@@ -54,10 +49,15 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
+type ProjectType = (typeof projects)[0];
+
+const ProjectCard = ({ project }: { project: ProjectType }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = project.images || [];
+  const { translations, isRTL } = useLanguage();
+  const t = translations.projects;
+  const projectTranslation = t.projectsList[project.titleKey];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -78,10 +78,10 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
   const handleRequestDemoDashboard = (e: React.MouseEvent) => {
     e.preventDefault();
     Swal.fire({
-      title: "Request Live Demo",
-      text: "Please fill in your details below to request a live demo for the School LMS Dashboard.",
+      title: t.requestDemoTitle,
+      text: t.requestDemoDashboard,
       icon: "info",
-      confirmButtonText: "Go to Contact Form",
+      confirmButtonText: t.goToContact,
       confirmButtonColor: "#6366f1",
       background: "#1a1a2e",
       color: "#ffffff",
@@ -98,10 +98,10 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
   const handleRequestDemoTaskr = (e: React.MouseEvent) => {
     e.preventDefault();
     Swal.fire({
-      title: "Request Live Demo",
-      text: "Please fill in your details below to request a live demo for the Taskr App.",
+      title: t.requestDemoTitle,
+      text: t.requestDemoTaskr,
       icon: "info",
-      confirmButtonText: "Go to Contact Form",
+      confirmButtonText: t.goToContact,
       confirmButtonColor: "#6366f1",
       background: "#1a1a2e",
       color: "#ffffff",
@@ -147,19 +147,19 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
               <motion.img
                 key={currentImageIndex}
                 src={images[currentImageIndex]}
-                alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={openLightbox}
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: isRTL ? -100 : 100 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
+                exit={{ opacity: 0, x: isRTL ? 100 : -100 }}
                 transition={{ duration: 0.3 }}
               />
             </AnimatePresence>
 
             {/* Click to expand hint */}
             <div className="absolute top-2 right-2 px-2 py-1 bg-black/50 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-              Click to expand
+              {t.clickToExpand}
             </div>
 
             {/* Navigation Arrows */}
@@ -170,11 +170,11 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
                     e.stopPropagation();
                     prevImage();
                   }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                  className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100`}
                   aria-label="Previous image"
                 >
                   <svg
-                    className="w-4 h-4 text-white"
+                    className={`w-4 h-4 text-white ${isRTL ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -192,11 +192,11 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
                     e.stopPropagation();
                     nextImage();
                   }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                  className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100`}
                   aria-label="Next image"
                 >
                   <svg
-                    className="w-4 h-4 text-white"
+                    className={`w-4 h-4 text-white ${isRTL ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -238,11 +238,11 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
         {/* Content */}
         <div className="p-6">
           <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-400 transition-colors">
-            {project.title}
+            {projectTranslation.title}
           </h3>
 
           <p className="text-dark-400 mb-4 leading-relaxed">
-            {project.description}
+            {projectTranslation.description}
           </p>
 
           {/* Tech Stack */}
@@ -277,7 +277,7 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                Request Live Demo
+                {t.requestDemo}
               </button>
             ) : project.isRequestDemoTaskr ? (
               <button
@@ -297,7 +297,7 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                Request Live Demo
+                {t.requestDemo}
               </button>
             ) : (
               <a
@@ -319,7 +319,7 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                Live Demo
+                {t.liveDemo}
               </a>
             )}
           </div>
@@ -332,6 +332,8 @@ const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => {
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { translations } = useLanguage();
+  const t = translations.projects;
 
   return (
     <section
@@ -349,15 +351,14 @@ export default function Projects() {
             className="text-4xl md:text-5xl font-bold mb-4 text-center"
             variants={staggerItem}
           >
-            Featured <span className="gradient-text">Projects</span>
+            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
             className="text-dark-400 text-center mb-16 text-lg max-w-2xl mx-auto"
             variants={staggerItem}
           >
-            A collection of my recent work showcasing modern web development
-            skills and best practices.
+            {t.subtitle}
           </motion.p>
 
           <motion.div
