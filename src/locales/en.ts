@@ -30,6 +30,11 @@ export const en = {
         description:
           "A modern, responsive school website designed to present content clearly and deliver a smooth user experience.",
       },
+      gym818: {
+        title: "818 Gym",
+        description:
+          "A modern, responsive gym website designed to present content clearly and deliver a smooth user experience.",
+      },
       lmsDashboard: {
         title: "School LMS Dashboard",
         description:

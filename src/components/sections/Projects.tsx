@@ -23,6 +23,18 @@ const projects = [
   },
   {
     id: 2,
+    titleKey: "gym818" as const,
+    tech: ["Wordpress", "Elementor", "Plugins", "Custom CSS", "Custom JS"],
+    liveUrl: "https://818.ae/",
+    images: [
+      "/images/projects/818-gym/1.PNG",
+      "/images/projects/818-gym/2.PNG",
+      "/images/projects/818-gym/3.PNG",
+      "/images/projects/818-gym/4.PNG",
+    ],
+  },
+  {
+    id: 3,
     titleKey: "lmsDashboard" as const,
     tech: ["Laravel", "PHP", "MySQL", "JavaScript", "Bootstrap", "Breeze"],
     liveUrl: "#contact",
@@ -35,7 +47,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     titleKey: "taskr" as const,
     tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
     liveUrl: "#contact",

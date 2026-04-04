@@ -22,7 +22,7 @@ const skills = {
   tools: [
     { name: "Git", icon: "📦" },
     { name: "GitHub", icon: "🐙" },
-    { name: "VS Code", icon: "💻" },
+    { name: "Wordpress", icon: "W" },
     { name: "Vercel", icon: "▲" },
   ],
 };
