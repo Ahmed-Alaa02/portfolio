@@ -27,10 +27,10 @@ const projects = [
     tech: ["Wordpress", "Elementor", "Plugins", "Custom CSS", "Custom JS"],
     liveUrl: "https://818.ae/",
     images: [
-      "/images/projects/818-gym/1.PNG",
-      "/images/projects/818-gym/2.PNG",
-      "/images/projects/818-gym/3.PNG",
-      "/images/projects/818-gym/4.PNG",
+      "/images/projects/818-gym/img1.PNG",
+      "/images/projects/818-gym/img2.PNG",
+      "/images/projects/818-gym/img3.PNG",
+      "/images/projects/818-gym/img4.PNG",
     ],
   },
   {
