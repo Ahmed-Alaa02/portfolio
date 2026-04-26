@@ -8,62 +8,15 @@ import Swal from "sweetalert2";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { useLanguage } from "@/context/LanguageContext";
+import { projectsData, type ProjectData } from "@/data/projects";
 
-const projects = [
-  {
-    id: 1,
-    titleKey: "ketanSchool" as const,
-    tech: ["Laravel", "PHP", "MySQL", "API", "JavaScript", "Bootstrap"],
-    liveUrl: "https://lms.cyberface-solutions.com/",
-    images: [
-      "/images/projects/ketan-school/1.PNG",
-      "/images/projects/ketan-school/2.PNG",
-      "/images/projects/ketan-school/3.PNG",
-    ],
-  },
-  {
-    id: 2,
-    titleKey: "gym818" as const,
-    tech: ["Wordpress", "Elementor", "Plugins", "Custom CSS", "Custom JS"],
-    liveUrl: "https://818.ae/",
-    images: [
-      "/images/projects/818-gym/img1.PNG",
-      "/images/projects/818-gym/img2.PNG",
-      "/images/projects/818-gym/img3.PNG",
-      "/images/projects/818-gym/img4.PNG",
-    ],
-  },
-  {
-    id: 3,
-    titleKey: "lmsDashboard" as const,
-    tech: ["Laravel", "PHP", "MySQL", "JavaScript", "Bootstrap", "Breeze"],
-    liveUrl: "#contact",
-    isRequestDemoDashboard: true,
-    images: [
-      "/images/projects/lms-dashboard/1.PNG",
-      "/images/projects/lms-dashboard/2.PNG",
-      "/images/projects/lms-dashboard/3.PNG",
-      "/images/projects/lms-dashboard/4.PNG",
-    ],
-  },
-  {
-    id: 4,
-    titleKey: "taskr" as const,
-    tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
-    liveUrl: "#contact",
-    isRequestDemoTaskr: true,
-    images: [
-      "/images/projects/taskr-app/1.PNG",
-      "/images/projects/taskr-app/2.PNG",
-      "/images/projects/taskr-app/3.PNG",
-      "/images/projects/taskr-app/4.PNG",
-    ],
-  },
-];
-
-type ProjectType = (typeof projects)[0];
-
-const ProjectCard = ({ project }: { project: ProjectType }) => {
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: ProjectData;
+  index: number;
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = project.images || [];
@@ -79,8 +32,8 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
+  const goToImage = (idx: number) => {
+    setCurrentImageIndex(idx);
   };
 
   const openLightbox = () => {
@@ -94,9 +47,9 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
       text: t.requestDemoDashboard,
       icon: "info",
       confirmButtonText: t.goToContact,
-      confirmButtonColor: "#6366f1",
-      background: "#1a1a2e",
-      color: "#ffffff",
+      confirmButtonColor: "#7c3aed",
+      background: "#0d0d12",
+      color: "#fafafa",
     }).then((result) => {
       if (result.isConfirmed) {
         setTimeout(() => {
@@ -107,6 +60,7 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
       }
     });
   };
+
   const handleRequestDemoTaskr = (e: React.MouseEvent) => {
     e.preventDefault();
     Swal.fire({
@@ -114,9 +68,9 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
       text: t.requestDemoTaskr,
       icon: "info",
       confirmButtonText: t.goToContact,
-      confirmButtonColor: "#6366f1",
-      background: "#1a1a2e",
-      color: "#ffffff",
+      confirmButtonColor: "#7c3aed",
+      background: "#0d0d12",
+      color: "#fafafa",
     }).then((result) => {
       if (result.isConfirmed) {
         setTimeout(() => {
@@ -128,33 +82,33 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
     });
   };
 
-  // Prepare slides for lightbox
   const slides = images.map((src) => ({ src }));
+  const num = String(index + 1).padStart(2, "0");
 
   return (
     <>
-      {/* Lightbox */}
       <Lightbox
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}
         index={currentImageIndex}
         slides={slides}
         styles={{
-          container: { backgroundColor: "rgba(0, 0, 0, 0.9)" },
+          container: { backgroundColor: "rgba(0, 0, 0, 0.92)" },
         }}
       />
 
-      <motion.div
+      <motion.article
         variants={staggerItem}
-        className="group relative glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300"
-        whileHover={{ y: -8 }}
+        className="group relative w-full min-w-0 h-full flex flex-col glass-strong rounded-2xl overflow-hidden glow-border-hover border border-white/10"
+        whileHover={{ y: -6 }}
+        transition={{ type: "spring", stiffness: 320, damping: 24 }}
       >
-        {/* Glow effect on hover */}
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/0 to-purple-500/0 group-hover:from-primary-500/20 group-hover:to-purple-500/20 transition-all duration-300 -z-10"></div>
+        <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 z-20 font-mono text-4xl font-bold text-white/10 group-hover:text-violet-400/30 transition-colors">
+          {num}
+        </div>
 
-        {/* Image Slider */}
         {images.length > 0 && (
-          <div className="relative h-48 bg-dark-100 overflow-hidden">
+          <div className="relative h-52 bg-zinc-950 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}
@@ -169,20 +123,19 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
               />
             </AnimatePresence>
 
-            {/* Click to expand hint */}
-            <div className="absolute top-2 right-2 px-2 py-1 bg-black/50 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 px-2 py-1 rounded-lg bg-black/60 text-[10px] text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">
               {t.clickToExpand}
             </div>
 
-            {/* Navigation Arrows */}
             {images.length > 1 && (
               <>
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     prevImage();
                   }}
-                  className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100`}
+                  className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-black/55 hover:bg-black/75 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/10`}
                   aria-label="Previous image"
                 >
                   <svg
@@ -200,11 +153,12 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
                   </svg>
                 </button>
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     nextImage();
                   }}
-                  className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100`}
+                  className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-black/55 hover:bg-black/75 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/10`}
                   aria-label="Next image"
                 >
                   <svg
@@ -224,22 +178,22 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
               </>
             )}
 
-            {/* Dot Indicators */}
             {images.length > 1 && (
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-                {images.map((_, index) => (
+                {images.map((_, idx) => (
                   <button
-                    key={index}
+                    key={idx}
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      goToImage(index);
+                      goToImage(idx);
                     }}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentImageIndex
-                        ? "bg-white w-6"
-                        : "bg-white/50 hover:bg-white/70"
+                    className={`h-1.5 rounded-full transition-all ${
+                      idx === currentImageIndex
+                        ? "w-6 bg-violet-400"
+                        : "w-2 bg-white/40 hover:bg-white/60"
                     }`}
-                    aria-label={`Go to image ${index + 1}`}
+                    aria-label={`Go to image ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -247,41 +201,33 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
           </div>
         )}
 
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-400 transition-colors">
+        <div className="p-6 pt-5 relative z-10 flex-1 flex flex-col min-h-0">
+          <h3 className="text-xl font-bold mb-2 text-white group-hover:text-violet-200 transition-colors">
             {projectTranslation.title}
           </h3>
-
-          <p className="text-dark-400 mb-4 leading-relaxed">
+          <p className="text-sm text-zinc-500 mb-4 leading-relaxed line-clamp-3">
             {projectTranslation.description}
           </p>
 
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tech.map((tech) => (
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {project.tech.slice(0, 5).map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-sm bg-dark-100 rounded-full text-dark-600 border border-dark-200"
+                className="px-2.5 py-1 text-[11px] rounded-lg bg-white/5 text-zinc-400 border border-white/10"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex gap-2 mt-auto pt-2">
             {project.isRequestDemoDashboard ? (
               <button
+                type="button"
                 onClick={handleRequestDemoDashboard}
-                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 btn-cyber-primary text-sm rounded-xl flex items-center justify-center gap-2"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -293,15 +239,11 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
               </button>
             ) : project.isRequestDemoTaskr ? (
               <button
+                type="button"
                 onClick={handleRequestDemoTaskr}
-                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 btn-cyber-primary text-sm rounded-xl flex items-center justify-center gap-2"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -316,14 +258,9 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 btn-cyber-primary text-sm rounded-xl flex items-center justify-center gap-2 text-center"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -336,49 +273,77 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
             )}
           </div>
         </div>
-      </motion.div>
+      </motion.article>
     </>
   );
 };
 
 export default function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { translations } = useLanguage();
   const t = translations.projects;
+  const tag = translations.sections.projects;
+
+  const scrollToProjectsTop = () => {
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const projectCount = projectsData.length;
+  const projectsGridClass =
+    projectCount <= 1
+      ? "grid-cols-1"
+      : projectCount === 2
+        ? "grid-cols-1 sm:grid-cols-2"
+        : projectCount === 3
+          ? "grid-cols-1 md:grid-cols-3"
+          : "grid-cols-1 md:grid-cols-2 xl:grid-cols-4";
 
   return (
-    <section
-      id="projects"
-      className="min-h-screen py-20 px-6 md:px-12 lg:px-24"
-    >
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
+          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 glow-border-hover"
         >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-4 text-center"
-            variants={staggerItem}
-          >
-            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
-          </motion.h2>
-
-          <motion.p
-            className="text-dark-400 text-center mb-16 text-lg max-w-2xl mx-auto"
-            variants={staggerItem}
-          >
-            {t.subtitle}
-          </motion.p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+            <div>
+              <p className="section-tag">{tag}</p>
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold text-white"
+                variants={staggerItem}
+              >
+                {t.title}{" "}
+                <span className="gradient-text">{t.titleHighlight}</span>
+              </motion.h2>
+              <motion.p
+                className="text-zinc-500 mt-3 max-w-xl text-sm sm:text-base"
+                variants={staggerItem}
+              >
+                {t.subtitle}
+              </motion.p>
+            </div>
+            <motion.button
+              type="button"
+              variants={staggerItem}
+              onClick={scrollToProjectsTop}
+              className="self-start sm:self-auto text-sm font-medium text-violet-300 hover:text-white border border-violet-500/30 hover:border-violet-400/60 rounded-full px-5 py-2.5 transition-colors"
+            >
+              {t.viewAll}
+            </motion.button>
+          </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerContainer}
+            className={`grid gap-6 ${projectsGridClass} items-stretch`}
           >
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {projectsData.map((project, i) => (
+              <div key={project.id} className="min-w-0 w-full h-full">
+                <ProjectCard project={project} index={i} />
+              </div>
             ))}
           </motion.div>
         </motion.div>

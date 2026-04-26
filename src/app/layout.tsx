@@ -44,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
-      <body className="font-sans">
+      <body className="font-sans antialiased text-white bg-black">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

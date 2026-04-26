@@ -1,14 +1,43 @@
 import { Translations } from "./en";
 
 export const ar: Translations = {
+  nav: {
+    brand: "أحمد علاء",
+    home: "الرئيسية",
+    about: "عني",
+    projects: "المشاريع",
+    skills: "المهارات",
+    experience: "الخبرة",
+    contact: "تواصل",
+    letsTalk: "لنتحدث",
+  },
+
+  sections: {
+    about: "// نبذة عني",
+    projects: "// مشاريع مميزة",
+    skills: "// المكدس التقني",
+    experience: "// الخبرة",
+    contact: "// تواصل",
+  },
+
   // Hero Section
   hero: {
     greeting: "مرحباً، أنا",
+    logoSlug: "ahmedalaa",
     name: "أحمد علاء",
     title: "مطور ويب شامل",
     description:
       "أطبق التفكير الهندسي لبناء تطبيقات ويب موثوقة وقابلة للتوسع. الأولوية للهندسة النظيفة والأداء وسهولة الصيانة.",
     viewProjects: "عرض المشاريع",
+    availability: "متاح لفرص جديدة",
+    scrollExplore: "مرّر للاستكشاف",
+    contactCta: "لنتواصل",
+    downloadCv: "تحميل السيرة",
+    stats: [
+      { value: "2+", label: "سنوات في تطوير الويب" },
+      { value: "4", label: "مشاريع بارزة في المعرض" },
+      { value: "100%", label: "التزام بكود نظيف" },
+    ],
   },
 
   // Projects Section
@@ -17,6 +46,7 @@ export const ar: Translations = {
     titleHighlight: "المميزة",
     subtitle:
       "مجموعة من أعمالي الحديثة التي تعرض مهارات تطوير الويب الحديثة وأفضل الممارسات.",
+    viewAll: "كل المشاريع",
     clickToExpand: "انقر للتكبير",
     liveDemo: "عرض مباشر",
     requestDemo: "طلب عرض توضيحي",
@@ -89,6 +119,8 @@ export const ar: Translations = {
     ],
     callToAction:
       "إذا كنت تبحث عن مطور موثوق يفهم الجانب التقني وأهداف العمل، دعنا نعمل معاً.",
+    connectCta: "لنتواصل",
+    codeCardTitle: "profile.json",
     coreValues: "القيم الأساسية",
     values: {
       problemSolving: {
@@ -110,7 +142,9 @@ export const ar: Translations = {
   contact: {
     title: "تواصل",
     titleHighlight: "معي",
+    headline: "لنصنع شيئاً رائعاً معاً.",
     subtitle: "لديك مشروع في ذهنك أو تريد الدردشة فقط؟ لا تتردد في التواصل!",
+    emailCta: "راسلني",
     form: {
       name: "الاسم",
       namePlaceholder: "اسمك",
@@ -148,5 +182,26 @@ export const ar: Translations = {
   // Language Switcher
   language: {
     switchTo: "English",
+  },
+
+  experience: {
+    title: "رحلتي",
+    titleHighlight: "المهنية",
+    subtitle: "من بداية 2024 حتى اليوم — تطوير ويب متكامل مع التركيز على الجودة.",
+    nowLabel: "الآن",
+    milestones: [
+      {
+        year: "2024",
+        text: "بدأت رحلتي في البرمجة أثناء دراسة هندسة القوى الميكانيكية، مستكشفاً اللغات وواضعاً أساس مساري نحو تطوير البرمجيات.",
+      },
+      {
+        year: "2025",
+        text: "انتقلت إلى تطوير الويب الشامل، متخصصاً في PHP وLaravel مع بناء تطبيقات واقعية وتعزيز مهارات الخلفية.",
+      },
+      {
+        year: "2026",
+        text: "مواصلة بناء منتجات ويب شاملة؛ منفتح لفرص جديدة وتعاون طويل الأمد.",
+      },
+    ],
   },
 };

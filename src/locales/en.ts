@@ -1,12 +1,41 @@
 export const en = {
+  nav: {
+    brand: "Ahmed Alaa",
+    home: "Home",
+    about: "About",
+    projects: "Projects",
+    skills: "Skills",
+    experience: "Experience",
+    contact: "Contact",
+    letsTalk: "Let's Talk",
+  },
+
+  sections: {
+    about: "// about me",
+    projects: "// featured projects",
+    skills: "// tech stack",
+    experience: "// experience",
+    contact: "// contact",
+  },
+
   // Hero Section
   hero: {
     greeting: "Hi, I'm",
+    logoSlug: "ahmedalaa",
     name: "Ahmed Alaa",
     title: "Full-Stack Web Developer",
     description:
       "Applying engineering thinking to build reliable and scalable full-stack web applications. Clean architecture, performance, and maintainability first.",
     viewProjects: "View Projects",
+    availability: "Available for new opportunities",
+    scrollExplore: "Scroll to explore",
+    contactCta: "Let's connect",
+    downloadCv: "Download CV",
+    stats: [
+      { value: "2+", label: "Years shipping web products" },
+      { value: "4", label: "Portfolio builds showcased" },
+      { value: "100%", label: "Commitment to clean code" },
+    ],
   },
 
   // Projects Section
@@ -15,6 +44,7 @@ export const en = {
     titleHighlight: "Projects",
     subtitle:
       "A collection of my recent work showcasing modern web development skills and best practices.",
+    viewAll: "View all projects",
     clickToExpand: "Click to expand",
     liveDemo: "Live Demo",
     requestDemo: "Request Live Demo",
@@ -87,6 +117,8 @@ export const en = {
     ],
     callToAction:
       "If you're looking for a reliable developer who understands both the technical side and the business goals, let's work together.",
+    connectCta: "Let's connect",
+    codeCardTitle: "profile.json",
     coreValues: "Core Values",
     values: {
       problemSolving: {
@@ -108,8 +140,10 @@ export const en = {
   contact: {
     title: "Get In",
     titleHighlight: "Touch",
+    headline: "Let's build something amazing together.",
     subtitle:
       "Have a project in mind or just want to chat? Feel free to reach out!",
+    emailCta: "Email me",
     form: {
       name: "Name",
       namePlaceholder: "Your name",
@@ -147,6 +181,27 @@ export const en = {
   // Language Switcher
   language: {
     switchTo: "العربية",
+  },
+
+  experience: {
+    title: "My",
+    titleHighlight: "Journey",
+    subtitle: "From my start in 2024 to today — full-stack delivery with a focus on quality.",
+    nowLabel: "Now",
+    milestones: [
+      {
+        year: "2024",
+        text: "Started my programming journey during Mechanical Power Engineering studies, exploring languages and building the foundation for my path into software development.",
+      },
+      {
+        year: "2025",
+        text: "Moved into full-stack web development, specializing in PHP and Laravel while building real-world applications and strengthening backend skills.",
+      },
+      {
+        year: "2026",
+        text: "Continuing to build end-to-end web products; open to new roles and long-term collaborations.",
+      },
+    ],
   },
 };
 

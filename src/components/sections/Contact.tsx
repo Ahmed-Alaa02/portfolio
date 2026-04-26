@@ -7,15 +7,17 @@ import { fadeIn, slideUp } from "@/lib/animations";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/context/LanguageContext";
+import Magnetic from "@/components/ui/Magnetic";
 
-// TODO: Replace these with your EmailJS credentials from https://www.emailjs.com/
 const EMAILJS_SERVICE_ID = "service_e6vgwyh";
 const EMAILJS_TEMPLATE_ID = "template_l6kd1ev";
 const EMAILJS_PUBLIC_KEY = "uVdXhgcBD9eT8lK4S";
 
+const EMAIL = "ahmed.alaa02@outlook.com";
+
 export default function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +26,7 @@ export default function Contact() {
   });
   const { translations, isRTL } = useLanguage();
   const t = translations.contact;
+  const tag = translations.sections.contact;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,20 +49,20 @@ export default function Contact() {
         text: t.alerts.successText,
         icon: "success",
         confirmButtonText: t.alerts.successButton,
-        confirmButtonColor: "#6366f1",
-        background: "#1a1a2e",
-        color: "#ffffff",
+        confirmButtonColor: "#7c3aed",
+        background: "#0d0d12",
+        color: "#fafafa",
       });
       setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
+    } catch {
       Swal.fire({
         title: t.alerts.errorTitle,
         text: t.alerts.errorText,
         icon: "error",
         confirmButtonText: t.alerts.errorButton,
-        confirmButtonColor: "#6366f1",
-        background: "#1a1a2e",
-        color: "#ffffff",
+        confirmButtonColor: "#7c3aed",
+        background: "#0d0d12",
+        color: "#fafafa",
       });
     } finally {
       setIsSubmitting(false);
@@ -76,39 +79,77 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact-section" className="py-20 px-6 md:px-12 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact-section" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeIn}
+          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
         >
+          <p className="section-tag">{tag}</p>
+
           <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-4 text-center"
+            className="text-3xl md:text-4xl font-bold text-white mb-4"
             variants={slideUp}
           >
-            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
+            {t.title}{" "}
+            <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
-            className="text-dark-400 text-center mb-12 text-lg"
+            className="text-xl sm:text-2xl text-white font-medium mb-2"
+            variants={slideUp}
+          >
+            {t.headline}
+          </motion.p>
+          <motion.p
+            className="text-zinc-500 mb-10 max-w-2xl text-sm sm:text-base"
             variants={slideUp}
           >
             {t.subtitle}
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Form */}
+          <motion.div variants={slideUp} className="mb-10">
+            <Magnetic className="max-w-xl" strength={0.15}>
+              <a
+                href={`mailto:${EMAIL}`}
+                className={`group flex items-center gap-3 rounded-2xl btn-cyber-primary px-5 py-4 sm:py-5 shadow-[0_0_40px_-8px_rgba(124,58,237,0.55)] ${isRTL ? "flex-row-reverse" : ""}`}
+              >
+                <span className="flex-1 font-mono text-sm sm:text-base truncate">
+                  {EMAIL}
+                </span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 shrink-0 group-hover:bg-white/25 transition-colors">
+                  <svg
+                    className={`w-5 h-5 ${isRTL ? "rtl-flip" : ""}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              </a>
+            </Magnetic>
+            <p className="text-xs text-zinc-600 mt-2 font-mono">{t.emailCta}</p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
             <motion.form
               onSubmit={handleSubmit}
-              className="glass rounded-xl p-8 space-y-6"
+              className="glass rounded-2xl p-6 sm:p-8 space-y-5 border border-white/10"
               variants={slideUp}
             >
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2 text-dark-600"
+                  className="block text-xs font-mono text-zinc-500 mb-2"
                 >
                   {t.form.name}
                 </label>
@@ -120,7 +161,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white disabled:opacity-50 placeholder:text-zinc-600"
                   placeholder={t.form.namePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -129,7 +170,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2 text-dark-600"
+                  className="block text-xs font-mono text-zinc-500 mb-2"
                 >
                   {t.form.email}
                 </label>
@@ -141,7 +182,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white disabled:opacity-50 placeholder:text-zinc-600"
                   placeholder={t.form.emailPlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -150,7 +191,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2 text-dark-600"
+                  className="block text-xs font-mono text-zinc-500 mb-2"
                 >
                   {t.form.message}
                 </label>
@@ -162,7 +203,7 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-white resize-none disabled:opacity-50"
+                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white resize-none disabled:opacity-50 placeholder:text-zinc-600"
                   placeholder={t.form.messagePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -171,27 +212,28 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-primary-600 transition-all glow-on-hover disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                className="w-full btn-cyber-primary px-6 py-3.5 text-sm sm:text-base rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.99 }}
               >
                 {isSubmitting ? t.form.sending : t.form.send}
               </motion.button>
             </motion.form>
 
-            {/* Contact Info & Social Links */}
-            <motion.div className="space-y-8" variants={slideUp}>
-              <div className="glass rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">{t.info.title}</h3>
+            <motion.div className="space-y-6" variants={slideUp}>
+              <div className="glass rounded-2xl p-6 sm:p-8 border border-white/10">
+                <h3 className="text-sm font-mono text-violet-300/90 mb-6">
+                  {t.info.title}
+                </h3>
 
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <a
-                    href="mailto:ahmed.alaa02@outlook.com"
-                    className="flex items-center gap-4 text-dark-400 hover:text-white transition-colors group"
+                    href={`mailto:${EMAIL}`}
+                    className={`flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
-                    <div className="w-12 h-12 bg-dark-100 rounded-lg flex items-center justify-center group-hover:bg-primary-600/20 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-violet-500/30 transition-colors">
                       <svg
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-violet-300"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -204,19 +246,21 @@ export default function Contact() {
                         />
                       </svg>
                     </div>
-                    <div>
-                      <p className="text-sm text-dark-500">{t.info.email}</p>
-                      <p className="font-medium">ahmed.alaa02@outlook.com</p>
+                    <div className={isRTL ? "text-right" : "text-left"}>
+                      <p className="text-xs text-zinc-600">{t.info.email}</p>
+                      <p className="font-medium text-white text-sm break-all">
+                        {EMAIL}
+                      </p>
                     </div>
                   </a>
 
                   <a
                     href="tel:+201010137937"
-                    className="flex items-center gap-4 text-dark-400 hover:text-white transition-colors group"
+                    className={`flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
-                    <div className="w-12 h-12 bg-dark-100 rounded-lg flex items-center justify-center group-hover:bg-primary-600/20 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-violet-500/30 transition-colors">
                       <svg
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-cyan-300"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -229,9 +273,9 @@ export default function Contact() {
                         />
                       </svg>
                     </div>
-                    <div>
-                      <p className="text-sm text-dark-500">{t.info.phone}</p>
-                      <p className="font-medium" dir="ltr">
+                    <div className={isRTL ? "text-right" : "text-left"}>
+                      <p className="text-xs text-zinc-600">{t.info.phone}</p>
+                      <p className="font-medium text-white text-sm" dir="ltr">
                         +201010137937
                       </p>
                     </div>
@@ -239,21 +283,19 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="glass rounded-xl p-8">
-                <h3 className="text-xl font-semibold mb-6">{t.social.title}</h3>
-
-                <div className="flex gap-4">
+              <div className="glass rounded-2xl p-6 sm:p-8 border border-white/10">
+                <h3 className="text-sm font-mono text-violet-300/90 mb-6">
+                  {t.social.title}
+                </h3>
+                <div className="flex flex-wrap gap-3">
                   <a
                     href="https://github.com/Ahmed-Alaa02"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 h-12 bg-dark-100 rounded-lg flex items-center justify-center hover:bg-primary-600/20 transition-all group"
+                    className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:border-violet-500/40 hover:bg-violet-500/10 transition-all text-zinc-400 hover:text-white"
+                    aria-label="GitHub"
                   >
-                    <svg
-                      className="w-6 h-6 group-hover:scale-110 transition-transform"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path
                         fillRule="evenodd"
                         d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"
@@ -261,18 +303,14 @@ export default function Contact() {
                       />
                     </svg>
                   </a>
-
                   <a
                     href="https://www.linkedin.com/in/ahmedalaa02"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 h-12 bg-dark-100 rounded-lg flex items-center justify-center hover:bg-primary-600/20 transition-all group"
+                    className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:border-violet-500/40 hover:bg-violet-500/10 transition-all text-zinc-400 hover:text-white"
+                    aria-label="LinkedIn"
                   >
-                    <svg
-                      className="w-6 h-6 group-hover:scale-110 transition-transform"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                   </a>

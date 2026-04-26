@@ -4,8 +4,9 @@ import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import About from "@/components/sections/About";
+import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Navbar from "@/components/Navbar";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
@@ -13,24 +14,29 @@ export default function Home() {
   const t = translations.footer;
 
   return (
-    <main className="min-h-screen">
-      <LanguageSwitcher />
-      <Hero />
-      <Projects />
-      <Skills />
-      <About />
-      <Contact />
+    <div className="page-cyber-bg">
+      <div className="noise-overlay motion-safe-only" aria-hidden />
+      <div className="page-cyber-inner">
+        <Navbar />
+        <main className="min-h-screen">
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Experience />
+          <Contact />
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-dark-200">
-        <div className="max-w-7xl mx-auto text-center text-dark-400">
-          <p className="text-sm">
-            © {new Date().getFullYear()} {t.copyright}{" "}
-            <span className="text-primary-500">Next.js</span>,{" "}
-            <span className="text-primary-500">Tailwind CSS</span>
-          </p>
-        </div>
-      </footer>
-    </main>
+          <footer className="py-10 px-4 sm:px-6 border-t border-white/10">
+            <div className="max-w-7xl mx-auto text-center text-zinc-600 text-sm">
+              <p>
+                © {new Date().getFullYear()} {t.copyright}{" "}
+                <span className="text-violet-400/90">Next.js</span>,{" "}
+                <span className="text-cyan-400/80">Tailwind CSS</span>
+              </p>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
   );
 }
