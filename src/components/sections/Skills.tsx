@@ -53,11 +53,11 @@ export default function Skills() {
     for (let i = 0; i < all.length; i += chunkSize) {
       r.push(all.slice(i, i + chunkSize));
     }
-    const mid = Math.floor(all.length / 2);
+    // Glow the full second row (backend stack: PHP, Laravel, Python, MySQL) so none look "turned off"
     const set = new Set<number>();
-    [mid - 1, mid, mid + 1].forEach((i) => {
-      if (i >= 0 && i < all.length) set.add(i);
-    });
+    const row2Start = chunkSize;
+    const row2End = Math.min(row2Start + chunkSize, all.length);
+    for (let i = row2Start; i < row2End; i++) set.add(i);
     return { rows: r, highlightSet: set };
   }, [all]);
 
