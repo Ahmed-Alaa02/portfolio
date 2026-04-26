@@ -15,7 +15,7 @@ export const ar: Translations = {
   sections: {
     about: "// نبذة عني",
     projects: "// مشاريع مميزة",
-    skills: "// المكدس التقني",
+    skills: "// التقنيات المستخدمة",
     experience: "// الخبرة",
     contact: "// تواصل",
   },
