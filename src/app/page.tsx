@@ -26,12 +26,12 @@ export default function Home() {
           <Experience />
           <Contact />
 
-          <footer className="py-10 px-4 sm:px-6 border-t border-white/10">
-            <div className="max-w-7xl mx-auto text-center text-zinc-600 text-sm">
+          <footer className="py-10 px-4 sm:px-6 border-t border-matte-border">
+            <div className="max-w-7xl mx-auto text-center text-matte-muted text-sm">
               <p>
                 © {new Date().getFullYear()} {t.copyright}{" "}
-                <span className="text-violet-400/90">Next.js</span>,{" "}
-                <span className="text-cyan-400/80">Tailwind CSS</span>
+                <span className="text-matte-gold/90">Next.js</span>,{" "}
+                <span className="text-matte-teal/85">Tailwind CSS</span>
               </p>
             </div>
           </footer>

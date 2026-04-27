@@ -40,18 +40,18 @@ export default function About() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeIn}
-          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
+          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
         >
           <p className="section-tag">{tag}</p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div variants={slideUp} className="relative mx-auto w-full max-w-md">
               <div
-                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-violet-600/40 via-fuchsia-500/20 to-cyan-500/25 blur-2xl opacity-80 motion-safe-only"
+                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-matte-gold/22 via-matte-highlight/10 to-matte-teal/14 blur-2xl opacity-80 motion-safe-only"
                 aria-hidden
               />
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-violet-500/20 bg-zinc-900/80 shadow-[0_0_60px_-15px_rgba(124,58,237,0.45)]">
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-zinc-800/50 to-black/80">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-matte-gold/25 bg-matte-surface/90 shadow-[0_0_60px_-18px_rgba(201,169,110,0.22)]">
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-matte-elevated/55 to-matte-bg/90">
                   <span className="text-6xl sm:text-7xl font-bold gradient-text select-none">
                     {translations.hero.name
                       .split(/\s+/)
@@ -74,19 +74,19 @@ export default function About() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.35, duration: 0.5 }}
-                className={`absolute -bottom-4 ${isRTL ? "-left-2" : "-right-2"} w-[min(100%,280px)] glass rounded-xl border border-white/15 p-4 shadow-xl`}
+                className={`absolute -bottom-4 ${isRTL ? "-left-2" : "-right-2"} w-[min(100%,280px)] glass rounded-xl border border-matte-border p-4 shadow-xl`}
               >
-                <p className="text-[10px] font-mono text-violet-300/90 mb-2">
+                <p className="text-[10px] font-mono text-matte-gold/90 mb-2">
                   {t.codeCardTitle}
                 </p>
-                <pre className="text-[10px] sm:text-xs font-mono text-zinc-400 leading-relaxed overflow-x-auto text-left rtl:text-right">
+                <pre className="text-[10px] sm:text-xs font-mono text-matte-muted leading-relaxed overflow-x-auto text-left rtl:text-right">
                   {JSON.stringify(jsonSnippet, null, 2)}
                 </pre>
               </motion.div>
             </motion.div>
 
-            <motion.div variants={slideUp} className="space-y-6 text-zinc-400">
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <motion.div variants={slideUp} className="space-y-6 text-matte-muted">
+              <h2 className="text-3xl md:text-4xl font-bold text-matte-text">
                 {t.title}{" "}
                 <span className="gradient-text">{t.titleHighlight}</span>
               </h2>
@@ -94,13 +94,13 @@ export default function About() {
               <div className="space-y-4 text-sm sm:text-base leading-relaxed">
                 <p>
                   {t.intro}{" "}
-                  <span className="text-white font-semibold">{t.role}</span>{" "}
+                  <span className="text-matte-text font-semibold">{t.role}</span>{" "}
                   {t.introText}
                 </p>
                 <p>{t.specialize}</p>
                 <p>
                   {t.whatSetsApart}{" "}
-                  <span className="text-white font-semibold">
+                  <span className="text-matte-text font-semibold">
                     {t.engineeringMindset}
                   </span>
                   {t.mindsetText}
@@ -109,28 +109,28 @@ export default function About() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs font-mono text-violet-300/80 mb-2">+ {t.workedOn}</p>
+                  <p className="text-xs font-mono text-matte-gold/85 mb-2">+ {t.workedOn}</p>
                   <ul className="space-y-2">
                     {t.workedOnList.map((item, index) => (
                       <li
                         key={index}
-                        className="flex gap-2 text-sm text-zinc-500"
+                        className="flex gap-2 text-sm text-matte-muted"
                       >
-                        <span className="text-violet-400 shrink-0">+</span>
+                        <span className="text-matte-gold shrink-0">+</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <p className="text-xs font-mono text-cyan-300/80 mb-2">+ {t.committed}</p>
+                  <p className="text-xs font-mono text-matte-teal/85 mb-2">+ {t.committed}</p>
                   <ul className="space-y-2">
                     {t.committedList.map((item, index) => (
                       <li
                         key={index}
-                        className="flex gap-2 text-sm text-zinc-500"
+                        className="flex gap-2 text-sm text-matte-muted"
                       >
-                        <span className="text-cyan-400 shrink-0">+</span>
+                        <span className="text-matte-teal shrink-0">+</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -138,39 +138,39 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/10">
-                <h3 className="text-sm font-mono text-zinc-500 mb-4">
+              <div className="pt-4 border-t border-matte-border">
+                <h3 className="text-sm font-mono text-matte-muted mb-4">
                   {t.coreValues}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="glass rounded-xl p-4 border border-white/10">
-                    <h4 className="font-semibold text-white text-sm mb-1">
+                  <div className="glass rounded-xl p-4 border border-matte-border">
+                    <h4 className="font-semibold text-matte-text text-sm mb-1">
                       {t.values.problemSolving.title}
                     </h4>
-                    <p className="text-xs text-zinc-500 leading-relaxed">
+                    <p className="text-xs text-matte-muted leading-relaxed">
                       {t.values.problemSolving.description}
                     </p>
                   </div>
-                  <div className="glass rounded-xl p-4 border border-white/10">
-                    <h4 className="font-semibold text-white text-sm mb-1">
+                  <div className="glass rounded-xl p-4 border border-matte-border">
+                    <h4 className="font-semibold text-matte-text text-sm mb-1">
                       {t.values.continuousLearning.title}
                     </h4>
-                    <p className="text-xs text-zinc-500 leading-relaxed">
+                    <p className="text-xs text-matte-muted leading-relaxed">
                       {t.values.continuousLearning.description}
                     </p>
                   </div>
-                  <div className="glass rounded-xl p-4 border border-white/10">
-                    <h4 className="font-semibold text-white text-sm mb-1">
+                  <div className="glass rounded-xl p-4 border border-matte-border">
+                    <h4 className="font-semibold text-matte-text text-sm mb-1">
                       {t.values.qualityFirst.title}
                     </h4>
-                    <p className="text-xs text-zinc-500 leading-relaxed">
+                    <p className="text-xs text-matte-muted leading-relaxed">
                       {t.values.qualityFirst.description}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm sm:text-base text-zinc-500">{t.callToAction}</p>
+              <p className="text-sm sm:text-base text-matte-muted">{t.callToAction}</p>
 
               <Magnetic className="inline-flex">
                 <motion.button

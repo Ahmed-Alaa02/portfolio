@@ -47,9 +47,9 @@ const ProjectCard = ({
       text: t.requestDemoDashboard,
       icon: "info",
       confirmButtonText: t.goToContact,
-      confirmButtonColor: "#7c3aed",
-      background: "#0d0d12",
-      color: "#fafafa",
+      confirmButtonColor: "#C9A96E",
+      background: "#111315",
+      color: "#F3F4F6",
     }).then((result) => {
       if (result.isConfirmed) {
         setTimeout(() => {
@@ -68,9 +68,9 @@ const ProjectCard = ({
       text: t.requestDemoTaskr,
       icon: "info",
       confirmButtonText: t.goToContact,
-      confirmButtonColor: "#7c3aed",
-      background: "#0d0d12",
-      color: "#fafafa",
+      confirmButtonColor: "#C9A96E",
+      background: "#111315",
+      color: "#F3F4F6",
     }).then((result) => {
       if (result.isConfirmed) {
         setTimeout(() => {
@@ -99,16 +99,16 @@ const ProjectCard = ({
 
       <motion.article
         variants={staggerItem}
-        className="group relative w-full min-w-0 h-full flex flex-col glass-strong rounded-2xl overflow-hidden glow-border-hover border border-white/10"
+        className="group relative w-full min-w-0 h-full flex flex-col glass-strong rounded-2xl overflow-hidden glow-border-hover border border-matte-border"
         whileHover={{ y: -6 }}
         transition={{ type: "spring", stiffness: 320, damping: 24 }}
       >
-        <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 z-20 font-mono text-4xl font-bold text-white/10 group-hover:text-violet-400/30 transition-colors">
+        <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 z-20 font-mono text-4xl font-bold text-matte-text/10 group-hover:text-matte-gold/25 transition-colors">
           {num}
         </div>
 
         {images.length > 0 && (
-          <div className="relative h-52 bg-zinc-950 overflow-hidden">
+          <div className="relative h-52 bg-matte-bg overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}
@@ -123,7 +123,7 @@ const ProjectCard = ({
               />
             </AnimatePresence>
 
-            <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 px-2 py-1 rounded-lg bg-black/60 text-[10px] text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">
+            <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 px-2 py-1 rounded-lg bg-matte-bg/75 text-[10px] text-matte-secondary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-matte-border">
               {t.clickToExpand}
             </div>
 
@@ -135,11 +135,11 @@ const ProjectCard = ({
                     e.stopPropagation();
                     prevImage();
                   }}
-                  className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-black/55 hover:bg-black/75 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/10`}
+                  className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
                   aria-label="Previous image"
                 >
                   <svg
-                    className={`w-4 h-4 text-white ${isRTL ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 text-matte-text ${isRTL ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -158,11 +158,11 @@ const ProjectCard = ({
                     e.stopPropagation();
                     nextImage();
                   }}
-                  className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-black/55 hover:bg-black/75 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/10`}
+                  className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
                   aria-label="Next image"
                 >
                   <svg
-                    className={`w-4 h-4 text-white ${isRTL ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 text-matte-text ${isRTL ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -190,8 +190,8 @@ const ProjectCard = ({
                     }}
                     className={`h-1.5 rounded-full transition-all ${
                       idx === currentImageIndex
-                        ? "w-6 bg-violet-400"
-                        : "w-2 bg-white/40 hover:bg-white/60"
+                        ? "w-6 bg-matte-gold"
+                        : "w-2 bg-matte-secondary/35 hover:bg-matte-secondary/55"
                     }`}
                     aria-label={`Go to image ${idx + 1}`}
                   />
@@ -202,10 +202,10 @@ const ProjectCard = ({
         )}
 
         <div className="p-6 pt-5 relative z-10 flex-1 flex flex-col min-h-0">
-          <h3 className="text-xl font-bold mb-2 text-white group-hover:text-violet-200 transition-colors">
+          <h3 className="text-xl font-bold mb-2 text-matte-text group-hover:text-matte-highlight transition-colors">
             {projectTranslation.title}
           </h3>
-          <p className="text-sm text-zinc-500 mb-4 leading-relaxed line-clamp-3">
+          <p className="text-sm text-matte-muted mb-4 leading-relaxed line-clamp-3">
             {projectTranslation.description}
           </p>
 
@@ -213,7 +213,7 @@ const ProjectCard = ({
             {project.tech.slice(0, 5).map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 text-[11px] rounded-lg bg-white/5 text-zinc-400 border border-white/10"
+                className="px-2.5 py-1 text-[11px] rounded-lg bg-matte-elevated/50 text-matte-muted border border-matte-border"
               >
                 {tech}
               </span>
@@ -307,20 +307,20 @@ export default function Projects() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 glow-border-hover"
+          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 glow-border-hover"
         >
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
             <div>
               <p className="section-tag">{tag}</p>
               <motion.h2
-                className="text-3xl md:text-4xl font-bold text-white"
+                className="text-3xl md:text-4xl font-bold text-matte-text"
                 variants={staggerItem}
               >
                 {t.title}{" "}
                 <span className="gradient-text">{t.titleHighlight}</span>
               </motion.h2>
               <motion.p
-                className="text-zinc-500 mt-3 max-w-xl text-sm sm:text-base"
+                className="text-matte-muted mt-3 max-w-xl text-sm sm:text-base"
                 variants={staggerItem}
               >
                 {t.subtitle}
@@ -330,7 +330,7 @@ export default function Projects() {
               type="button"
               variants={staggerItem}
               onClick={scrollToProjectsTop}
-              className="self-start sm:self-auto text-sm font-medium text-violet-300 hover:text-white border border-violet-500/30 hover:border-violet-400/60 rounded-full px-5 py-2.5 transition-colors"
+              className="self-start sm:self-auto text-sm font-medium text-matte-gold hover:text-matte-highlight border border-matte-gold/35 hover:border-matte-highlight/55 rounded-full px-5 py-2.5 transition-colors"
             >
               {t.viewAll}
             </motion.button>

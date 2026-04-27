@@ -20,7 +20,7 @@ function FloatingOrb({
 }) {
   return (
     <motion.div
-      className={`absolute rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-600/20 to-cyan-500/10 shadow-[0_0_40px_-10px_rgba(124,58,237,0.5)] motion-safe-only ${className}`}
+      className={`absolute rounded-2xl border border-matte-gold/20 bg-gradient-to-br from-matte-gold/12 to-matte-teal/8 shadow-[0_0_40px_-12px_rgba(201,169,110,0.22)] motion-safe-only ${className}`}
       animate={
         reduceMotion
           ? {}
@@ -46,24 +46,24 @@ function FloatingOrb({
 function CodeEditorMock({ stack }: { stack: string[] }) {
   const stackLine = `  stack: [${stack.map((s) => `"${s}"`).join(", ")}],`;
   const lines = [
-    { c: "text-zinc-500", t: "// stack snapshot" },
-    { c: "text-violet-300", t: "const developer = {" },
-    { c: "text-cyan-300", t: '  focus: ["full-stack", "UX", "reliability"],' },
-    { c: "text-zinc-300", t: stackLine },
-    { c: "text-violet-300", t: "};" },
+    { c: "text-matte-muted", t: "// stack snapshot" },
+    { c: "text-matte-gold", t: "const developer = {" },
+    { c: "text-matte-teal", t: '  focus: ["full-stack", "UX", "reliability"],' },
+    { c: "text-matte-secondary", t: stackLine },
+    { c: "text-matte-gold", t: "};" },
   ];
 
   return (
     <div className="relative" style={{ perspective: "1100px" }}>
       <div
-        className="relative rounded-2xl glass-strong border border-violet-500/20 overflow-hidden shadow-[0_0_80px_-20px_rgba(124,58,237,0.45)]"
+        className="relative rounded-2xl glass-strong border border-matte-gold/20 overflow-hidden shadow-[0_0_80px_-24px_rgba(201,169,110,0.2)]"
         style={{ transform: "rotateX(6deg) rotateY(-10deg)" }}
       >
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/40">
-          <span className="w-3 h-3 rounded-full bg-red-500/80" />
-          <span className="w-3 h-3 rounded-full bg-amber-400/80" />
-          <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-          <span className="ml-2 text-[10px] font-mono text-zinc-500 truncate">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-matte-border bg-matte-bg/55">
+          <span className="w-3 h-3 rounded-full bg-red-500/75" />
+          <span className="w-3 h-3 rounded-full bg-matte-highlight/85" />
+          <span className="w-3 h-3 rounded-full bg-matte-teal/75" />
+          <span className="ml-2 text-[10px] font-mono text-matte-muted truncate">
             workspace / portfolio
           </span>
         </div>
@@ -76,7 +76,7 @@ function CodeEditorMock({ stack }: { stack: string[] }) {
         </pre>
       </div>
       <div
-        className="pointer-events-none absolute -inset-8 rounded-full opacity-40 blur-3xl bg-gradient-to-tr from-violet-600/30 via-transparent to-cyan-500/20 -z-10"
+        className="pointer-events-none absolute -inset-8 rounded-full opacity-40 blur-3xl bg-gradient-to-tr from-matte-gold/18 via-transparent to-matte-teal/12 -z-10"
         aria-hidden
       />
     </div>
@@ -126,24 +126,24 @@ export default function Hero() {
           >
             <motion.div
               variants={slideDown}
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs sm:text-sm text-emerald-200/90"
+              className="inline-flex items-center gap-2 rounded-full border border-matte-teal/35 bg-matte-teal/10 px-4 py-2 text-xs sm:text-sm text-matte-teal"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_12px_2px_rgba(52,211,153,0.6)]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-matte-teal opacity-50" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-matte-teal shadow-[0_0_12px_2px_rgba(125,211,199,0.35)]" />
               </span>
               {t.availability}
             </motion.div>
 
             <motion.div variants={slideDown} className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-matte-text leading-[1.1]">
                 {t.greeting}{" "}
                 <span className="gradient-text">{t.name}</span>
               </h1>
-              <p className="text-xl sm:text-2xl text-zinc-400 font-medium">
+              <p className="text-xl sm:text-2xl text-matte-secondary font-medium">
                 {t.title}
               </p>
-              <p className="text-base sm:text-lg text-zinc-500 max-w-xl mx-auto lg:mx-0 rtl:lg:ms-0 rtl:lg:me-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-matte-muted max-w-xl mx-auto lg:mx-0 rtl:lg:ms-0 rtl:lg:me-auto leading-relaxed">
                 {t.description}
               </p>
             </motion.div>
@@ -205,12 +205,12 @@ export default function Hero() {
 
             <motion.div
               variants={slideDown}
-              className="glass rounded-2xl px-4 py-3 inline-flex flex-wrap items-center justify-center lg:justify-start gap-3 max-w-xl mx-auto lg:mx-0 glow-border-hover border border-white/10"
+              className="glass rounded-2xl px-4 py-3 inline-flex flex-wrap items-center justify-center lg:justify-start gap-3 max-w-xl mx-auto lg:mx-0 glow-border-hover border border-matte-border"
             >
               {pillSkills.map((s) => (
                 <span
                   key={s.name}
-                  className="inline-flex items-center gap-1.5 text-xs text-zinc-400"
+                  className="inline-flex items-center gap-1.5 text-xs text-matte-muted"
                   title={s.name}
                 >
                   <span className="text-lg grayscale hover:grayscale-0 transition-[filter]">
@@ -228,7 +228,7 @@ export default function Hero() {
           >
             <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
               <motion.div
-                className="absolute inset-0 rounded-full border border-violet-500/10 motion-safe-only"
+                className="absolute inset-0 rounded-full border border-matte-gold/12 motion-safe-only"
                 animate={reduceMotion ? {} : { rotate: 360 }}
                 transition={
                   reduceMotion
@@ -237,7 +237,7 @@ export default function Hero() {
                 }
               />
               <motion.div
-                className="absolute inset-4 rounded-full border border-cyan-500/10 motion-safe-only"
+                className="absolute inset-4 rounded-full border border-matte-teal/12 motion-safe-only"
                 animate={reduceMotion ? {} : { rotate: -360 }}
                 transition={
                   reduceMotion
@@ -282,12 +282,12 @@ export default function Hero() {
                 <motion.li
                   key={i}
                   variants={slideDown}
-                  className="glass rounded-xl px-5 py-4 border border-white/10 glow-border-hover"
+                  className="glass rounded-xl px-5 py-4 border border-matte-border glow-border-hover"
                 >
                   <p className="text-2xl sm:text-3xl font-bold gradient-text leading-none">
                     {s.value}
                   </p>
-                  <p className="text-sm text-zinc-500 mt-2 leading-snug">{s.label}</p>
+                  <p className="text-sm text-matte-muted mt-2 leading-snug">{s.label}</p>
                 </motion.li>
               ))}
             </ul>
@@ -298,14 +298,14 @@ export default function Hero() {
               onClick={() =>
                 document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
               }
-              className="hidden lg:flex items-center gap-3 text-zinc-500 hover:text-zinc-300 text-sm mt-4 transition-colors self-end"
+              className="hidden lg:flex items-center gap-3 text-matte-muted hover:text-matte-gold text-sm mt-4 transition-colors self-end"
             >
               <span className="font-mono text-xs uppercase tracking-widest">
                 {t.scrollExplore}
               </span>
-              <span className="flex h-9 w-6 rounded-full border border-white/20 justify-center pt-2">
+              <span className="flex h-9 w-6 rounded-full border border-matte-border justify-center pt-2">
                 <motion.span
-                  className="w-1 h-2 rounded-full bg-violet-400"
+                  className="w-1 h-2 rounded-full bg-matte-gold"
                   animate={
                     reduceMotion
                       ? {}

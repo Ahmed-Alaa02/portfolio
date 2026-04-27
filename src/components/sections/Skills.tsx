@@ -25,13 +25,13 @@ function HexTile({
       <div
         className={`absolute inset-0 flex items-center justify-center [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)] border transition-all duration-300 ${
           highlighted
-            ? "bg-violet-600/25 border-violet-400/50 shadow-[0_0_28px_-6px_rgba(124,58,237,0.65)]"
-            : "bg-white/[0.04] border-white/10 hover:border-violet-500/30"
+            ? "bg-matte-gold/18 border-matte-gold/45 shadow-[0_0_28px_-8px_rgba(201,169,110,0.28)]"
+            : "bg-matte-surface/40 border-matte-border hover:border-matte-gold/28"
         }`}
       />
       <div className="relative z-10 flex flex-col items-center gap-1 px-2 text-center">
         <span className="text-2xl sm:text-3xl leading-none">{skill.icon}</span>
-        <span className="text-[10px] sm:text-[11px] font-medium text-zinc-400 leading-tight max-w-[4.5rem] truncate">
+        <span className="text-[10px] sm:text-[11px] font-medium text-matte-muted leading-tight max-w-[4.5rem] truncate">
           {skill.name}
         </span>
       </div>
@@ -69,17 +69,17 @@ export default function Skills() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 glow-border-hover"
+          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 glow-border-hover"
         >
           <p className="section-tag">{tag}</p>
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-white mb-3"
+            className="text-3xl md:text-4xl font-bold text-matte-text mb-3"
             variants={staggerItem}
           >
             {t.title} <span className="gradient-text">{t.titleHighlight}</span>
           </motion.h2>
           <motion.p
-            className="text-zinc-500 mb-10 max-w-2xl text-sm sm:text-base"
+            className="text-matte-muted mb-10 max-w-2xl text-sm sm:text-base"
             variants={staggerItem}
           >
             {t.subtitle}
@@ -117,7 +117,7 @@ export default function Skills() {
 
           <motion.p
             variants={staggerItem}
-            className="text-center text-xs text-zinc-600 font-mono mt-6"
+            className="text-center text-xs text-matte-muted font-mono mt-6"
           >
             {t.frontend} · {t.backend} · {t.tools}
           </motion.p>

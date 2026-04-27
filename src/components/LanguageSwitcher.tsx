@@ -9,7 +9,7 @@ export default function LanguageSwitcher() {
   return (
     <motion.button
       onClick={toggleLanguage}
-      className="fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-2 glass rounded-full hover:bg-white/10 transition-all duration-300 group"
+      className="fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-2 glass rounded-full hover:bg-matte-elevated/50 transition-all duration-300 group"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: -20 }}
@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
       </svg>
 
       {/* Language Text */}
-      <span className="font-medium text-sm text-dark-600 group-hover:text-white transition-colors">
+      <span className="font-medium text-sm text-matte-muted group-hover:text-matte-text transition-colors">
         {translations.language.switchTo}
       </span>
 

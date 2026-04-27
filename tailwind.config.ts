@@ -9,24 +9,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        matte: {
+          bg: "#111315",
+          surface: "#1B1F24",
+          elevated: "#22272E",
+          border: "#2A2F36",
+          text: "#F3F4F6",
+          secondary: "#C7CDD6",
+          muted: "#94A3B8",
+          gold: "#C9A96E",
+          highlight: "#E2C68B",
+          teal: "#7DD3C7",
+        },
         cyber: {
-          violet: "#7c3aed",
-          glow: "#a78bfa",
-          cyan: "#38bdf8",
-          surface: "#0d0d12",
-          muted: "#a1a1aa",
+          violet: "#C9A96E",
+          glow: "#E2C68B",
+          cyan: "#7DD3C7",
+          surface: "#1B1F24",
+          muted: "#94A3B8",
         },
         primary: {
-          50: "#f5f3ff",
-          100: "#ede9fe",
-          200: "#ddd6fe",
-          300: "#c4b5fd",
-          400: "#a78bfa",
-          500: "#8b5cf6",
-          600: "#7c3aed",
-          700: "#6d28d9",
-          800: "#5b21b6",
-          900: "#4c1d95",
+          50: "#faf8f3",
+          100: "#f2ede3",
+          200: "#e5dac8",
+          300: "#d9c9a8",
+          400: "#E2C68B",
+          500: "#d4b87a",
+          600: "#C9A96E",
+          700: "#a88b56",
+          800: "#8a7048",
+          900: "#5c4a32",
+          DEFAULT: "#C9A96E",
         },
         dark: {
           50: "#18181b",
@@ -80,8 +93,8 @@ const config: Config = {
           "100%": { transform: "scale(1)", opacity: "1" },
         },
         glow: {
-          "0%": { boxShadow: "0 0 20px rgba(124, 58, 237, 0.25)" },
-          "100%": { boxShadow: "0 0 36px rgba(124, 58, 237, 0.45)" },
+          "0%": { boxShadow: "0 0 18px rgba(125, 211, 199, 0.12)" },
+          "100%": { boxShadow: "0 0 28px rgba(125, 211, 199, 0.22)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
@@ -98,7 +111,7 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial-cyber":
-          "radial-gradient(ellipse at center, rgba(124,58,237,0.15) 0%, transparent 65%)",
+          "radial-gradient(ellipse at center, rgba(201,169,110,0.12) 0%, transparent 65%)",
       },
     },
   },

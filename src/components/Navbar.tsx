@@ -42,7 +42,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
-          className={`glass-strong rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border border-white/10 ${
+          className={`glass-strong rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border border-matte-border ${
             scrolled ? "shadow-lg shadow-black/40" : ""
           }`}
           aria-label="Primary"
@@ -50,12 +50,12 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => scrollTo("#home")}
-            className="font-mono text-sm sm:text-base text-white/95 tracking-tight hover:text-cyber-glow transition-colors text-left"
+            className="font-mono text-sm sm:text-base text-matte-text tracking-tight hover:text-matte-highlight transition-colors text-left"
           >
-            <span className="text-cyber-glow/90">&lt;</span>
+            <span className="text-matte-gold/90">&lt;</span>
             {brandSlug}
-            <span className="text-cyber-cyan/90">.dev</span>
-            <span className="text-cyber-glow/90">/&gt;</span>
+            <span className="text-matte-teal/90">.dev</span>
+            <span className="text-matte-gold/90">/&gt;</span>
           </button>
 
           <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
@@ -64,7 +64,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="px-3 py-2 text-sm text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+                  className="px-3 py-2 text-sm text-matte-muted hover:text-matte-gold rounded-lg hover:bg-matte-elevated/40 transition-colors"
                 >
                   {t[key]}
                 </button>
@@ -76,11 +76,11 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 bg-white/5 text-xs font-medium text-zinc-300 hover:border-violet-500/30 hover:text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-matte-border bg-matte-surface/50 text-xs font-medium text-matte-secondary hover:border-matte-gold/40 hover:text-matte-text transition-colors"
               aria-label={`Switch language to ${language === "en" ? "Arabic" : "English"}`}
             >
               <span className="opacity-70">Aa</span>
-              <span className="text-cyber-glow">{translations.language.switchTo}</span>
+              <span className="text-matte-gold">{translations.language.switchTo}</span>
             </button>
 
             <button
@@ -93,7 +93,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="lg:hidden p-2 rounded-lg border border-white/10 text-zinc-300"
+              className="lg:hidden p-2 rounded-lg border border-matte-border text-matte-secondary"
               aria-expanded={open}
               aria-controls="mobile-nav"
               onClick={() => setOpen((v) => !v)}
@@ -117,7 +117,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="lg:hidden mt-2 glass-strong rounded-2xl border border-white/10 overflow-hidden"
+              className="lg:hidden mt-2 glass-strong rounded-2xl border border-matte-border overflow-hidden"
             >
               <ul className={`py-2 flex flex-col ${isRTL ? "text-right" : "text-left"}`}>
                 {navIds.map(({ key, href }) => (
@@ -125,20 +125,20 @@ export default function Navbar() {
                     <button
                       type="button"
                       onClick={() => scrollTo(href)}
-                      className="w-full px-4 py-3 text-sm text-zinc-300 hover:bg-white/5 hover:text-white"
+                      className="w-full px-4 py-3 text-sm text-matte-secondary hover:bg-matte-elevated/35 hover:text-matte-text"
                     >
                       {t[key]}
                     </button>
                   </li>
                 ))}
-                <li className="border-t border-white/10 mt-1 pt-1">
+                <li className="border-t border-matte-border mt-1 pt-1">
                   <button
                     type="button"
                     onClick={() => {
                       toggleLanguage();
                       setOpen(false);
                     }}
-                    className="w-full px-4 py-3 text-sm text-cyber-glow"
+                    className="w-full px-4 py-3 text-sm text-matte-gold"
                   >
                     {translations.language.switchTo}
                   </button>

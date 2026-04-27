@@ -49,9 +49,9 @@ export default function Contact() {
         text: t.alerts.successText,
         icon: "success",
         confirmButtonText: t.alerts.successButton,
-        confirmButtonColor: "#7c3aed",
-        background: "#0d0d12",
-        color: "#fafafa",
+        confirmButtonColor: "#C9A96E",
+        background: "#111315",
+        color: "#F3F4F6",
       });
       setFormData({ name: "", email: "", message: "" });
     } catch {
@@ -60,9 +60,9 @@ export default function Contact() {
         text: t.alerts.errorText,
         icon: "error",
         confirmButtonText: t.alerts.errorButton,
-        confirmButtonColor: "#7c3aed",
-        background: "#0d0d12",
-        color: "#fafafa",
+        confirmButtonColor: "#C9A96E",
+        background: "#111315",
+        color: "#F3F4F6",
       });
     } finally {
       setIsSubmitting(false);
@@ -86,12 +86,12 @@ export default function Contact() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeIn}
-          className="glass-strong rounded-3xl border border-white/10 p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
+          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
         >
           <p className="section-tag">{tag}</p>
 
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            className="text-3xl md:text-4xl font-bold text-matte-text mb-4"
             variants={slideUp}
           >
             {t.title}{" "}
@@ -99,13 +99,13 @@ export default function Contact() {
           </motion.h2>
 
           <motion.p
-            className="text-xl sm:text-2xl text-white font-medium mb-2"
+            className="text-xl sm:text-2xl text-matte-text font-medium mb-2"
             variants={slideUp}
           >
             {t.headline}
           </motion.p>
           <motion.p
-            className="text-zinc-500 mb-10 max-w-2xl text-sm sm:text-base"
+            className="text-matte-muted mb-10 max-w-2xl text-sm sm:text-base"
             variants={slideUp}
           >
             {t.subtitle}
@@ -115,12 +115,12 @@ export default function Contact() {
             <Magnetic className="max-w-xl" strength={0.15}>
               <a
                 href={`mailto:${EMAIL}`}
-                className={`group flex items-center gap-3 rounded-2xl btn-cyber-primary px-5 py-4 sm:py-5 shadow-[0_0_40px_-8px_rgba(124,58,237,0.55)] ${isRTL ? "flex-row-reverse" : ""}`}
+                className={`group flex items-center gap-3 rounded-2xl btn-cyber-primary px-5 py-4 sm:py-5 shadow-[0_0_40px_-10px_rgba(201,169,110,0.28)] ${isRTL ? "flex-row-reverse" : ""}`}
               >
                 <span className="flex-1 font-mono text-sm sm:text-base truncate">
                   {EMAIL}
                 </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 shrink-0 group-hover:bg-white/25 transition-colors">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-matte-bg/35 shrink-0 group-hover:bg-matte-bg/50 transition-colors">
                   <svg
                     className={`w-5 h-5 ${isRTL ? "rtl-flip" : ""}`}
                     fill="none"
@@ -137,19 +137,19 @@ export default function Contact() {
                 </span>
               </a>
             </Magnetic>
-            <p className="text-xs text-zinc-600 mt-2 font-mono">{t.emailCta}</p>
+            <p className="text-xs text-matte-muted mt-2 font-mono">{t.emailCta}</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <motion.form
               onSubmit={handleSubmit}
-              className="glass rounded-2xl p-6 sm:p-8 space-y-5 border border-white/10"
+              className="glass rounded-2xl p-6 sm:p-8 space-y-5 border border-matte-border"
               variants={slideUp}
             >
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-xs font-mono text-zinc-500 mb-2"
+                  className="block text-xs font-mono text-matte-muted mb-2"
                 >
                   {t.form.name}
                 </label>
@@ -161,7 +161,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white disabled:opacity-50 placeholder:text-zinc-600"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.namePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -170,7 +170,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-xs font-mono text-zinc-500 mb-2"
+                  className="block text-xs font-mono text-matte-muted mb-2"
                 >
                   {t.form.email}
                 </label>
@@ -182,7 +182,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white disabled:opacity-50 placeholder:text-zinc-600"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.emailPlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -191,7 +191,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-mono text-zinc-500 mb-2"
+                  className="block text-xs font-mono text-matte-muted mb-2"
                 >
                   {t.form.message}
                 </label>
@@ -203,7 +203,7 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all text-white resize-none disabled:opacity-50 placeholder:text-zinc-600"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text resize-none disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.messagePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -221,19 +221,19 @@ export default function Contact() {
             </motion.form>
 
             <motion.div className="space-y-6" variants={slideUp}>
-              <div className="glass rounded-2xl p-6 sm:p-8 border border-white/10">
-                <h3 className="text-sm font-mono text-violet-300/90 mb-6">
+              <div className="glass rounded-2xl p-6 sm:p-8 border border-matte-border">
+                <h3 className="text-sm font-mono text-matte-gold/90 mb-6">
                   {t.info.title}
                 </h3>
 
                 <div className="space-y-5">
                   <a
                     href={`mailto:${EMAIL}`}
-                    className={`flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
+                    className={`flex items-center gap-4 text-matte-secondary hover:text-matte-gold transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-violet-500/30 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-matte-elevated/40 border border-matte-border flex items-center justify-center group-hover:border-matte-gold/35 transition-colors">
                       <svg
-                        className="w-6 h-6 text-violet-300"
+                        className="w-6 h-6 text-matte-gold"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -247,8 +247,8 @@ export default function Contact() {
                       </svg>
                     </div>
                     <div className={isRTL ? "text-right" : "text-left"}>
-                      <p className="text-xs text-zinc-600">{t.info.email}</p>
-                      <p className="font-medium text-white text-sm break-all">
+                      <p className="text-xs text-matte-muted">{t.info.email}</p>
+                      <p className="font-medium text-matte-text text-sm break-all">
                         {EMAIL}
                       </p>
                     </div>
@@ -256,11 +256,11 @@ export default function Contact() {
 
                   <a
                     href="tel:+201010137937"
-                    className={`flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
+                    className={`flex items-center gap-4 text-matte-secondary hover:text-matte-teal transition-colors group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-violet-500/30 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-matte-elevated/40 border border-matte-border flex items-center justify-center group-hover:border-matte-teal/35 transition-colors">
                       <svg
-                        className="w-6 h-6 text-cyan-300"
+                        className="w-6 h-6 text-matte-teal"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -274,8 +274,8 @@ export default function Contact() {
                       </svg>
                     </div>
                     <div className={isRTL ? "text-right" : "text-left"}>
-                      <p className="text-xs text-zinc-600">{t.info.phone}</p>
-                      <p className="font-medium text-white text-sm" dir="ltr">
+                      <p className="text-xs text-matte-muted">{t.info.phone}</p>
+                      <p className="font-medium text-matte-text text-sm" dir="ltr">
                         +201010137937
                       </p>
                     </div>
@@ -283,8 +283,8 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="glass rounded-2xl p-6 sm:p-8 border border-white/10">
-                <h3 className="text-sm font-mono text-violet-300/90 mb-6">
+              <div className="glass rounded-2xl p-6 sm:p-8 border border-matte-border">
+                <h3 className="text-sm font-mono text-matte-gold/90 mb-6">
                   {t.social.title}
                 </h3>
                 <div className="flex flex-wrap gap-3">
@@ -292,7 +292,7 @@ export default function Contact() {
                     href="https://github.com/Ahmed-Alaa02"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:border-violet-500/40 hover:bg-violet-500/10 transition-all text-zinc-400 hover:text-white"
+                    className="h-12 w-12 rounded-xl bg-matte-elevated/40 border border-matte-border flex items-center justify-center hover:border-matte-gold/45 hover:bg-matte-gold/10 transition-all text-matte-muted hover:text-matte-text"
                     aria-label="GitHub"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -307,7 +307,7 @@ export default function Contact() {
                     href="https://www.linkedin.com/in/ahmedalaa02"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:border-violet-500/40 hover:bg-violet-500/10 transition-all text-zinc-400 hover:text-white"
+                    className="h-12 w-12 rounded-xl bg-matte-elevated/40 border border-matte-border flex items-center justify-center hover:border-matte-gold/45 hover:bg-matte-gold/10 transition-all text-matte-muted hover:text-matte-text"
                     aria-label="LinkedIn"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
