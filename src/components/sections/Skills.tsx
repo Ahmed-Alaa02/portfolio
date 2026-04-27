@@ -25,13 +25,17 @@ function HexTile({
       <div
         className={`absolute inset-0 flex items-center justify-center [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)] border transition-all duration-300 ${
           highlighted
-            ? "bg-matte-gold/18 border-matte-gold/45 shadow-[0_0_28px_-8px_rgba(201,169,110,0.28)]"
-            : "bg-matte-surface/40 border-matte-border hover:border-matte-gold/28"
+            ? "border-matte-highlight/90 bg-gradient-to-b from-matte-highlight to-matte-gold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),0_0_24px_-6px_rgba(201,169,110,0.35)]"
+            : "border-matte-border bg-matte-elevated shadow-[inset_0_1px_0_0_rgba(243,244,246,0.06)] hover:border-matte-gold/35"
         }`}
       />
       <div className="relative z-10 flex flex-col items-center gap-1 px-2 text-center">
         <span className="text-2xl sm:text-3xl leading-none">{skill.icon}</span>
-        <span className="text-[10px] sm:text-[11px] font-medium text-matte-muted leading-tight max-w-[4.5rem] truncate">
+        <span
+          className={`text-[10px] sm:text-[11px] font-medium leading-tight max-w-[4.5rem] truncate ${
+            highlighted ? "text-matte-bg/90" : "text-matte-muted"
+          }`}
+        >
           {skill.name}
         </span>
       </div>
