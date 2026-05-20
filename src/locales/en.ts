@@ -46,6 +46,11 @@ export const en = {
       "A collection of my recent work showcasing modern web development skills and best practices.",
     viewAll: "View all projects",
     clickToExpand: "Click to expand",
+    openDetails: "Open project details",
+    closeDetails: "Close project details",
+    projectDetails: "Project details",
+    techStack: "Tech stack",
+    github: "GitHub",
     liveDemo: "Live Demo",
     requestDemo: "Request Live Demo",
     requestDemoTitle: "Request Live Demo",
@@ -59,21 +64,36 @@ export const en = {
         title: "Ketan School Website",
         description:
           "A modern, responsive school website designed to present content clearly and deliver a smooth user experience.",
+        fullDescription:
+          "A polished school website focused on clear navigation, responsive layouts, and accessible content presentation. The build balances a professional public-facing design with practical structure for admissions, announcements, and school information.",
       },
       gym818: {
         title: "818 Gym",
         description:
           "A modern, responsive gym website designed to present content clearly and deliver a smooth user experience.",
+        fullDescription:
+          "A high-impact fitness website built to showcase the gym brand, services, and visual identity across devices. The experience keeps visitors oriented while making the venue feel energetic, premium, and easy to explore.",
       },
       lmsDashboard: {
         title: "School LMS Dashboard",
         description:
           "Modern LMS dashboard enabling efficient school management with role-based access and streamlined academic operations.",
+        fullDescription:
+          "A school management dashboard designed around daily academic workflows, role-based access, and structured data. It supports administrative clarity with focused interfaces for managing users, classes, learning operations, and reporting needs.",
+      },
+      shehabHousing: {
+        title: "Shehab Housing Platform",
+        description:
+          "A modern housing and apartment management platform that streamlines student accommodation bookings, apartment management, media handling, and operational workflows.",
+        fullDescription:
+          "Shehab Housing Platform is a full-stack web application built to simplify the entire accommodation management process for students and administrators. The platform includes apartment listings, room and bed management, booking workflows, role-based dashboards, media management, invoice/payment integration, and admin control panels. It focuses on scalability, clean UX, operational efficiency, and a premium responsive interface tailored for real-world housing operations.",
       },
       taskr: {
         title: "TASKR - Task Management",
         description:
           "A lightweight task management app for creating, organizing, and tracking tasks with a clean and intuitive interface.",
+        fullDescription:
+          "A simple productivity app for capturing tasks, organizing priorities, and tracking progress without visual clutter. The interface emphasizes fast actions, readable task states, and a lightweight workflow for everyday planning.",
       },
     },
   },

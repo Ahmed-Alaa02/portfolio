@@ -1,8 +1,9 @@
 export type ProjectData = {
   id: number;
-  titleKey: "ketanSchool" | "gym818" | "lmsDashboard" | "taskr";
+  titleKey: "ketanSchool" | "gym818" | "lmsDashboard" | "taskr" | "shehabHousing";
   tech: string[];
   liveUrl: string;
+  githubUrl?: string;
   images: string[];
   isRequestDemoDashboard?: boolean;
   isRequestDemoTaskr?: boolean;
@@ -45,9 +46,30 @@ export const projectsData: ProjectData[] = [
       "/images/projects/lms-dashboard/4.PNG",
     ],
   },
-  /* Re-enable TASKR when needed:
   {
     id: 4,
+    titleKey: "shehabHousing",
+    tech: [
+      "Laravel",
+      "PHP",
+      "MySQL",
+      "JavaScript",
+      "Fawaterak Payment Gateway",
+      "Bootstrap",
+    ],
+    liveUrl: "https://alshehabb.com/",
+    images: [
+      "/images/projects/alshehab/1.png",
+      "/images/projects/alshehab/2.png",
+      "/images/projects/alshehab/3.png",
+      "/images/projects/alshehab/4.png",
+      "/images/projects/alshehab/5.png",
+      "/images/projects/alshehab/6.png",
+    ],
+  },
+  /* Re-enable TASKR when needed:
+  {
+    id: 5,
     titleKey: "taskr",
     tech: ["PHP", "MySQL", "HTML 5", "CSS", "JavaScript", "Bootstrap"],
     liveUrl: "#contact",
