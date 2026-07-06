@@ -29,9 +29,7 @@ export default function Home() {
           <footer className="py-10 px-4 sm:px-6 border-t border-matte-border">
             <div className="max-w-7xl mx-auto text-center text-matte-muted text-sm">
               <p>
-                © {new Date().getFullYear()} {t.copyright}{" "}
-                <span className="text-matte-gold/90">Next.js</span>,{" "}
-                <span className="text-matte-teal/85">Tailwind CSS</span>
+                © {new Date().getFullYear()} {t.copyright}
               </p>
             </div>
           </footer>

@@ -196,7 +196,7 @@ export const ar: Translations = {
 
   // Footer
   footer: {
-    copyright: "أحمد علاء. تم البناء باستخدام",
+    copyright: "أحمد علاء. جميع الحقوق محفوظة.",
   },
 
   // Language Switcher

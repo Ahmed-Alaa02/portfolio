@@ -195,7 +195,7 @@ export const en = {
 
   // Footer
   footer: {
-    copyright: "Ahmed Alaa. Built with",
+    copyright: "Ahmed Alaa. All rights reserved.",
   },
 
   // Language Switcher
