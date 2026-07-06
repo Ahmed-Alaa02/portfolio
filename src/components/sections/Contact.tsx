@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { fadeIn, slideUp } from "@/lib/animations";
-import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/context/LanguageContext";
 import Magnetic from "@/components/ui/Magnetic";
@@ -31,6 +30,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const { default: Swal } = await import("sweetalert2");
 
     try {
       await emailjs.send(

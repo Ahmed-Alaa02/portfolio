@@ -11,6 +11,9 @@ const inter = Inter({
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
+  // Only applied when the user switches to Arabic (see globals.css), so don't
+  // force-preload it for the default English visit.
+  preload: false,
 });
 
 export const metadata: Metadata = {

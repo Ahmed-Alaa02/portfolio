@@ -1,13 +1,18 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import Swal from "sweetalert2";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
 import { useLanguage } from "@/context/LanguageContext";
 import { projectsData, type ProjectData } from "@/data/projects";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+
+// Loaded on demand: keeps the ~20KB+ lightbox JS/CSS out of the initial bundle
+// since it's only ever needed after a user clicks to zoom an image.
+const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {
+  ssr: false,
+});
 
 type ProjectAction = "dashboard" | "taskr";
 
@@ -78,16 +83,23 @@ const ProjectCard = ({
           className="relative h-52 bg-matte-bg overflow-hidden"
         >
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={currentImageIndex}
-              src={images[currentImageIndex]}
-              alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover"
+              className="absolute inset-0"
               initial={{ opacity: 0, x: isRTL ? -100 : 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: isRTL ? 100 : -100 }}
               transition={{ duration: 0.3 }}
-            />
+            >
+              <Image
+                src={images[currentImageIndex]}
+                alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+                priority={index === 0}
+              />
+            </motion.div>
           </AnimatePresence>
 
           <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 px-2 py-1 rounded-lg bg-matte-bg/75 text-[10px] text-matte-secondary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-matte-border">
@@ -262,6 +274,13 @@ const ProjectDetailsModal = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  // Deferred so the lightbox CSS only ships once a user actually zooms an image.
+  useEffect(() => {
+    if (lightboxOpen) {
+      import("yet-another-react-lightbox/styles.css");
+    }
+  }, [lightboxOpen]);
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
@@ -327,17 +346,23 @@ const ProjectDetailsModal = ({
               >
                 {images.length > 0 && (
                   <AnimatePresence mode="wait">
-                    <motion.img
+                    <motion.div
                       key={currentImageIndex}
-                      src={images[currentImageIndex]}
-                      alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
                       onClick={() => setLightboxOpen(true)}
-                      className="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
+                      className="absolute inset-0 cursor-zoom-in"
                       initial={{ opacity: 0, scale: 1.03, x: isRTL ? -40 : 40 }}
                       animate={{ opacity: 1, scale: 1, x: 0 }}
                       exit={{ opacity: 0, scale: 0.98, x: isRTL ? 40 : -40 }}
                       transition={{ duration: 0.34, ease: "easeOut" }}
-                    />
+                    >
+                      <Image
+                        src={images[currentImageIndex]}
+                        alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
+                        fill
+                        sizes="(min-width: 1024px) 58vw, 100vw"
+                        className="object-cover"
+                      />
+                    </motion.div>
                   </AnimatePresence>
                 )}
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-matte-bg/90 to-transparent pointer-events-none" />
@@ -516,7 +541,8 @@ export default function Projects() {
     };
   }, [selectedProject]);
 
-  const handleRequestDemo = (action: ProjectAction) => {
+  const handleRequestDemo = async (action: ProjectAction) => {
+    const { default: Swal } = await import("sweetalert2");
     Swal.fire({
       title: t.requestDemoTitle,
       text: action === "dashboard" ? t.requestDemoDashboard : t.requestDemoTaskr,

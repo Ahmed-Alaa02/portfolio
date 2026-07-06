@@ -248,3 +248,17 @@ html[dir="rtl"] ul:not(.list-inside) {
     animation: none !important;
   }
 }
+
+/* backdrop-filter compositing cost scales with blur radius; smaller phones
+   tend to have weaker GPUs, so use a lighter blur to reduce scroll jank. */
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glass-strong {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
