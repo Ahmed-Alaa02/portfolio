@@ -320,7 +320,7 @@ const ProjectDetailsModal = ({
       />
 
       <motion.div
-        className="fixed inset-0 z-50 overflow-y-auto px-4 py-5 sm:py-8"
+        className="fixed inset-0 z-[110] overflow-y-auto px-4 py-5 sm:py-8"
         role="dialog"
         aria-modal="true"
         aria-label={`${t.projectDetails}: ${projectTranslation.title}`}
