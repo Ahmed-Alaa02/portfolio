@@ -36,15 +36,13 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-[100] transition-all duration-300 ${
-        scrolled ? "py-3" : "py-5"
+      className={`fixed top-0 inset-x-0 z-[100] border-b border-matte-border bg-matte-bg/95 transition-shadow duration-300 ${
+        scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
-          className={`glass-strong rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border border-matte-border ${
-            scrolled ? "shadow-lg shadow-black/40" : ""
-          }`}
+          className="flex items-center justify-between gap-4 py-4"
           aria-label="Primary"
         >
           <button
@@ -52,10 +50,10 @@ export default function Navbar() {
             onClick={() => scrollTo("#home")}
             className="font-mono text-sm sm:text-base text-matte-text tracking-tight hover:text-matte-highlight transition-colors text-left"
           >
-            <span className="text-matte-gold/90">&lt;</span>
+            <span className="text-matte-muted">&lt;</span>
             {brandSlug}
-            <span className="text-matte-teal/90">.dev</span>
-            <span className="text-matte-gold/90">/&gt;</span>
+            <span className="text-matte-gold">.dev</span>
+            <span className="text-matte-muted">/&gt;</span>
           </button>
 
           <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
@@ -64,7 +62,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="px-3 py-2 text-sm text-matte-muted hover:text-matte-gold rounded-lg hover:bg-matte-elevated/40 transition-colors"
+                  className="px-3 py-2 text-sm text-matte-muted hover:text-matte-gold transition-colors"
                 >
                   {t[key]}
                 </button>
@@ -76,7 +74,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-matte-border bg-matte-surface/50 text-xs font-medium text-matte-secondary hover:border-matte-gold/40 hover:text-matte-text transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-full border border-matte-border text-xs font-medium text-matte-secondary hover:border-matte-gold/40 hover:text-matte-text transition-colors"
               aria-label={`Switch language to ${language === "en" ? "Arabic" : "English"}`}
             >
               <span className="opacity-70">Aa</span>
@@ -93,7 +91,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="lg:hidden p-2 rounded-lg border border-matte-border text-matte-secondary"
+              className="lg:hidden p-2 rounded-full border border-matte-border text-matte-secondary"
               aria-expanded={open}
               aria-controls="mobile-nav"
               onClick={() => setOpen((v) => !v)}
@@ -109,45 +107,45 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
+      </div>
 
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              id="mobile-nav"
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              className="lg:hidden mt-2 glass-strong rounded-2xl border border-matte-border overflow-hidden"
-            >
-              <ul className={`py-2 flex flex-col ${isRTL ? "text-right" : "text-left"}`}>
-                {navIds.map(({ key, href }) => (
-                  <li key={key}>
-                    <button
-                      type="button"
-                      onClick={() => scrollTo(href)}
-                      className="w-full px-4 py-3 text-sm text-matte-secondary hover:bg-matte-elevated/35 hover:text-matte-text"
-                    >
-                      {t[key]}
-                    </button>
-                  </li>
-                ))}
-                <li className="border-t border-matte-border mt-1 pt-1">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden border-t border-matte-border bg-matte-bg overflow-hidden"
+          >
+            <ul className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col ${isRTL ? "text-right" : "text-left"}`}>
+              {navIds.map(({ key, href }) => (
+                <li key={key}>
                   <button
                     type="button"
-                    onClick={() => {
-                      toggleLanguage();
-                      setOpen(false);
-                    }}
-                    className="w-full px-4 py-3 text-sm text-matte-gold"
+                    onClick={() => scrollTo(href)}
+                    className="w-full py-3 text-sm text-matte-secondary hover:text-matte-text"
                   >
-                    {translations.language.switchTo}
+                    {t[key]}
                   </button>
                 </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+              ))}
+              <li className="border-t border-matte-border mt-1 pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    toggleLanguage();
+                    setOpen(false);
+                  }}
+                  className="w-full py-3 text-sm text-matte-gold"
+                >
+                  {translations.language.switchTo}
+                </button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

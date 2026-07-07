@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Cairo } from "next/font/google";
+import { Inter, Cairo, Lora } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-serif",
 });
 
 const cairo = Cairo({
@@ -46,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
+    <html lang="en" className={`${inter.variable} ${lora.variable} ${cairo.variable}`}>
       <body className="font-sans antialiased bg-matte-bg text-matte-text">
         <LanguageProvider>{children}</LanguageProvider>
       </body>

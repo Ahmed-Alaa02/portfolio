@@ -22,6 +22,26 @@ const getActionType = (project: ProjectData): ProjectAction | null => {
   return null;
 };
 
+const getDisplayUrl = (url: string) => {
+  if (url.startsWith("#")) return "private demo";
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+};
+
+const BrowserChrome = ({ url, className = "" }: { url: string; className?: string }) => (
+  <div
+    className={`absolute inset-x-0 top-0 z-20 flex items-center gap-2 border-b border-matte-border bg-matte-elevated ${className}`}
+  >
+    <span className="flex gap-1.5 shrink-0">
+      <span className="w-2 h-2 rounded-full bg-matte-border" />
+      <span className="w-2 h-2 rounded-full bg-matte-border" />
+      <span className="w-2 h-2 rounded-full bg-matte-border" />
+    </span>
+    <span className="flex-1 text-center font-mono text-matte-muted truncate">
+      {getDisplayUrl(url)}
+    </span>
+  </div>
+);
+
 const ProjectCard = ({
   project,
   index,
@@ -69,19 +89,29 @@ const ProjectCard = ({
       aria-label={`${t.openDetails}: ${projectTranslation.title}`}
       onClick={() => onOpen(project)}
       onKeyDown={openFromKeyboard}
-      className="group relative w-full min-w-0 h-full flex flex-col glass-strong rounded-2xl overflow-hidden glow-border-hover border border-matte-border cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-matte-teal"
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 320, damping: 24 }}
+      className="group w-full max-w-4xl mx-auto text-center cursor-pointer rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-matte-gold"
     >
-      <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 z-20 font-mono text-4xl font-bold text-matte-text/10 group-hover:text-matte-gold/25 transition-colors">
+      <p className="font-mono text-xs tracking-[0.2em] uppercase text-matte-gold mb-3">
         {num}
-      </div>
+      </p>
+      <motion.h3
+        layoutId={`project-title-${project.id}`}
+        className="font-serif text-2xl sm:text-3xl font-normal mb-3 text-matte-text group-hover:text-matte-highlight transition-colors"
+      >
+        {projectTranslation.title}
+      </motion.h3>
+      <p className="text-matte-muted max-w-2xl mx-auto mb-8 leading-relaxed text-sm sm:text-base">
+        {projectTranslation.description}
+      </p>
 
       {images.length > 0 && (
         <motion.div
           layoutId={`project-image-${project.id}`}
-          className="relative h-52 bg-matte-bg overflow-hidden"
+          className="relative h-72 sm:h-96 lg:h-[440px] max-w-3xl mx-auto bg-matte-bg overflow-hidden rounded-xl border border-matte-border glow-border-hover"
+          whileHover={{ y: -4 }}
+          transition={{ type: "spring", stiffness: 320, damping: 24 }}
         >
+          <BrowserChrome url={project.liveUrl} className="px-4 py-2.5 text-xs" />
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImageIndex}
@@ -95,14 +125,14 @@ const ProjectCard = ({
                 src={images[currentImageIndex]}
                 alt={`${projectTranslation.title} screenshot ${currentImageIndex + 1}`}
                 fill
-                sizes="(min-width: 768px) 50vw, 100vw"
+                sizes="(min-width: 1024px) 768px, 100vw"
                 className="object-cover"
                 priority={index === 0}
               />
             </motion.div>
           </AnimatePresence>
 
-          <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2 px-2 py-1 rounded-lg bg-matte-bg/75 text-[10px] text-matte-secondary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-matte-border">
+          <div className="absolute top-11 right-3 rtl:right-auto rtl:left-3 px-2 py-1 rounded-lg bg-matte-bg/75 text-[10px] text-matte-secondary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-matte-border">
             {t.clickToExpand}
           </div>
 
@@ -114,7 +144,7 @@ const ProjectCard = ({
                   e.stopPropagation();
                   prevImage();
                 }}
-                className={`absolute ${isRTL ? "right-2" : "left-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
+                className={`absolute ${isRTL ? "right-3" : "left-3"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
                 aria-label="Previous image"
               >
                 <svg
@@ -137,7 +167,7 @@ const ProjectCard = ({
                   e.stopPropagation();
                   nextImage();
                 }}
-                className={`absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
+                className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 w-9 h-9 bg-matte-bg/70 hover:bg-matte-surface rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-matte-border`}
                 aria-label="Next image"
               >
                 <svg
@@ -158,7 +188,7 @@ const ProjectCard = ({
           )}
 
           {images.length > 1 && (
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
               {images.map((_, idx) => (
                 <button
                   key={idx}
@@ -180,68 +210,56 @@ const ProjectCard = ({
         </motion.div>
       )}
 
-      <div className="p-6 pt-5 relative z-10 flex-1 flex flex-col min-h-0">
-        <motion.h3
-          layoutId={`project-title-${project.id}`}
-          className="text-xl font-bold mb-2 text-matte-text group-hover:text-matte-highlight transition-colors"
-        >
-          {projectTranslation.title}
-        </motion.h3>
-        <p className="text-sm text-matte-muted mb-4 leading-relaxed line-clamp-3">
-          {projectTranslation.description}
-        </p>
+      <div className="flex flex-wrap justify-center gap-1.5 mt-7 mb-7">
+        {project.tech.slice(0, 5).map((tech) => (
+          <span
+            key={tech}
+            className="px-2.5 py-1 text-[11px] rounded-lg bg-matte-elevated/50 text-matte-muted border border-matte-border"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tech.slice(0, 5).map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-1 text-[11px] rounded-lg bg-matte-elevated/50 text-matte-muted border border-matte-border"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-2 mt-auto pt-2">
-          {actionType ? (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onRequestDemo(actionType);
-              }}
-              className="flex-1 px-4 py-2.5 btn-cyber-primary text-sm rounded-xl flex items-center justify-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-              {t.requestDemo}
-            </button>
-          ) : (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex-1 px-4 py-2.5 btn-cyber-primary text-sm rounded-xl flex items-center justify-center gap-2 text-center"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-              {t.liveDemo}
-            </a>
-          )}
-        </div>
+      <div className="flex justify-center">
+        {actionType ? (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRequestDemo(actionType);
+            }}
+            className="px-6 py-3 btn-cyber-primary text-sm rounded-full flex items-center justify-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </svg>
+            {t.requestDemo}
+          </button>
+        ) : (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="px-6 py-3 btn-cyber-primary text-sm rounded-full flex items-center justify-center gap-2 text-center"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+            {t.liveDemo}
+          </a>
+        )}
       </div>
     </motion.article>
   );
@@ -344,6 +362,7 @@ const ProjectDetailsModal = ({
                 layoutId={`project-image-${project.id}`}
                 className="relative min-h-[280px] sm:min-h-[420px] lg:min-h-[620px] bg-matte-bg overflow-hidden"
               >
+                <BrowserChrome url={project.liveUrl} className="px-4 py-2.5 text-xs" />
                 {images.length > 0 && (
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -436,7 +455,7 @@ const ProjectDetailsModal = ({
                 <p className="section-tag">{t.projectDetails}</p>
                 <motion.h3
                   layoutId={`project-title-${project.id}`}
-                  className="text-3xl sm:text-4xl font-bold text-matte-text mb-4"
+                  className="font-serif text-3xl sm:text-4xl font-normal text-matte-text mb-4"
                 >
                   {projectTranslation.title}
                 </motion.h3>
@@ -563,50 +582,42 @@ export default function Projects() {
     });
   };
 
-  const projectsGridClass = "grid-cols-1 md:grid-cols-2";
-
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 glow-border-hover"
+          className="border-t border-matte-border pt-14 sm:pt-16"
         >
-          <div className="mb-10">
-            <div>
-              <p className="section-tag">{tag}</p>
-              <motion.h2
-                className="text-3xl md:text-4xl font-bold text-matte-text"
-                variants={staggerItem}
-              >
-                {t.title}{" "}
-                <span className="gradient-text">{t.titleHighlight}</span>
-              </motion.h2>
-              <motion.p
-                className="text-matte-muted mt-3 max-w-xl text-sm sm:text-base"
-                variants={staggerItem}
-              >
-                {t.subtitle}
-              </motion.p>
-            </div>
+          <div className="text-center mb-16 sm:mb-20">
+            <p className="section-tag">{tag}</p>
+            <motion.h2
+              className="font-serif text-3xl md:text-4xl font-normal text-matte-text"
+              variants={staggerItem}
+            >
+              {t.title}{" "}
+              <span className="gradient-text italic">{t.titleHighlight}</span>
+            </motion.h2>
+            <motion.p
+              className="text-matte-muted mt-3 max-w-xl mx-auto text-sm sm:text-base"
+              variants={staggerItem}
+            >
+              {t.subtitle}
+            </motion.p>
           </div>
 
-          <motion.div
-            variants={staggerContainer}
-            className={`grid gap-6 ${projectsGridClass} items-stretch`}
-          >
+          <motion.div variants={staggerContainer} className="flex flex-col gap-20 sm:gap-28">
             {projectsData.map((project, i) => (
-              <div key={project.id} className="min-w-0 w-full h-full">
-                <ProjectCard
-                  project={project}
-                  index={i}
-                  onOpen={setSelectedProject}
-                  onRequestDemo={handleRequestDemo}
-                />
-              </div>
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={i}
+                onOpen={setSelectedProject}
+                onRequestDemo={handleRequestDemo}
+              />
             ))}
           </motion.div>
         </motion.div>

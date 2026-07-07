@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --bg: #111315;
-  --surface: #1b1f24;
-  --surface-2: #22272e;
-  --border: #2a2f36;
+  --bg: #0d0c0a;
+  --surface: #17150f;
+  --surface-2: #1e1b14;
+  --border: #2b271c;
 
-  --text: #f3f4f6;
-  --text-secondary: #c7cdd6;
-  --text-muted: #94a3b8;
+  --text: #f4efe6;
+  --text-secondary: #d9d0bf;
+  --text-muted: #9c9384;
 
   --primary: #c9a96e;
   --accent: #7dd3c7;
   --highlight: #e2c68b;
 
-  --btn-on-gold: #111315;
+  --btn-on-gold: #1b1608;
 
   --font-inter: "Inter", sans-serif;
   --font-cairo: "Cairo", sans-serif;
@@ -61,35 +61,11 @@ html[dir="rtl"] * {
   pointer-events: none;
   background:
     radial-gradient(
-      ellipse 80% 50% at 18% -8%,
-      color-mix(in srgb, var(--primary) 14%, transparent),
-      transparent 58%
-    ),
-    radial-gradient(
-      ellipse 55% 42% at 88% 12%,
-      color-mix(in srgb, var(--accent) 9%, transparent),
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 45% 32% at 50% 100%,
-      color-mix(in srgb, var(--primary) 7%, transparent),
-      transparent 48%
+      ellipse 70% 45% at 50% -8%,
+      color-mix(in srgb, var(--primary) 10%, transparent),
+      transparent 60%
     ),
     var(--bg);
-}
-
-.page-cyber-bg::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.28;
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 70%);
 }
 
 .page-cyber-inner {
@@ -121,23 +97,15 @@ html[dir="rtl"] .gradient-text {
 }
 
 .glass {
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--primary) 6%, transparent) inset,
-    0 24px 48px -24px rgba(0, 0, 0, 0.55);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 48px -32px rgba(0, 0, 0, 0.5);
 }
 
 .glass-strong {
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--surface);
   border: 1px solid var(--border);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--primary) 5%, transparent) inset,
-    0 32px 64px -32px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 32px 64px -36px rgba(0, 0, 0, 0.55);
 }
 
 .glow-border-hover {
@@ -148,11 +116,8 @@ html[dir="rtl"] .gradient-text {
 }
 
 .glow-border-hover:hover {
-  border-color: color-mix(in srgb, var(--primary) 38%, var(--border));
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent),
-    0 0 40px -14px color-mix(in srgb, var(--primary) 22%, transparent),
-    0 24px 48px -24px rgba(0, 0, 0, 0.45);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.45);
 }
 
 .btn-cyber-primary {
@@ -246,19 +211,5 @@ html[dir="rtl"] ul:not(.list-inside) {
 
   .motion-safe-only {
     animation: none !important;
-  }
-}
-
-/* backdrop-filter compositing cost scales with blur radius; smaller phones
-   tend to have weaker GPUs, so use a lighter blur to reduce scroll jank. */
-@media (max-width: 767px) {
-  .glass {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .glass-strong {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
   }
 }

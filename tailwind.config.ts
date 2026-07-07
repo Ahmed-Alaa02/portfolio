@@ -10,13 +10,13 @@ const config: Config = {
     extend: {
       colors: {
         matte: {
-          bg: "#111315",
-          surface: "#1B1F24",
-          elevated: "#22272E",
-          border: "#2A2F36",
-          text: "#F3F4F6",
-          secondary: "#C7CDD6",
-          muted: "#94A3B8",
+          bg: "#0D0C0A",
+          surface: "#17150F",
+          elevated: "#1E1B14",
+          border: "#2B271C",
+          text: "#F4EFE6",
+          secondary: "#D9D0BF",
+          muted: "#9C9384",
           gold: "#C9A96E",
           highlight: "#E2C68B",
           teal: "#7DD3C7",
@@ -63,6 +63,7 @@ const config: Config = {
           "Consolas",
           "monospace",
         ],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-in-out",

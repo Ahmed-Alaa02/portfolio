@@ -79,23 +79,23 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact-section" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="contact-section" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeIn}
-          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 lg:p-12 glow-border-hover overflow-hidden"
+          className="border-t border-matte-border pt-14 sm:pt-16"
         >
           <p className="section-tag">{tag}</p>
 
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-matte-text mb-4"
+            className="font-serif text-3xl md:text-4xl font-normal text-matte-text mb-4"
             variants={slideUp}
           >
             {t.title}{" "}
-            <span className="gradient-text">{t.titleHighlight}</span>
+            <span className="gradient-text italic">{t.titleHighlight}</span>
           </motion.h2>
 
           <motion.p
@@ -161,7 +161,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-gold/45 focus:ring-2 focus:ring-matte-gold/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.namePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -182,7 +182,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-gold/45 focus:ring-2 focus:ring-matte-gold/15 transition-all text-matte-text disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.emailPlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />
@@ -203,7 +203,7 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   rows={5}
-                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-teal/45 focus:ring-2 focus:ring-matte-teal/15 transition-all text-matte-text resize-none disabled:opacity-50 placeholder:text-matte-muted"
+                  className="w-full px-4 py-3 bg-matte-bg/50 border border-matte-border rounded-xl focus:outline-none focus:border-matte-gold/45 focus:ring-2 focus:ring-matte-gold/15 transition-all text-matte-text resize-none disabled:opacity-50 placeholder:text-matte-muted"
                   placeholder={t.form.messagePlaceholder}
                   dir={isRTL ? "rtl" : "ltr"}
                 />

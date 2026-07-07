@@ -66,21 +66,21 @@ export default function Skills() {
   }, [all]);
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="glass-strong rounded-3xl border border-matte-border p-6 sm:p-10 glow-border-hover"
+          className="border-t border-matte-border pt-14 sm:pt-16"
         >
           <p className="section-tag">{tag}</p>
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-matte-text mb-3"
+            className="font-serif text-3xl md:text-4xl font-normal text-matte-text mb-3"
             variants={staggerItem}
           >
-            {t.title} <span className="gradient-text">{t.titleHighlight}</span>
+            {t.title} <span className="gradient-text italic">{t.titleHighlight}</span>
           </motion.h2>
           <motion.p
             className="text-matte-muted mb-10 max-w-2xl text-sm sm:text-base"
