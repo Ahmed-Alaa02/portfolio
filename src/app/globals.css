@@ -45,6 +45,10 @@ html[dir="rtl"] body {
 
 html[dir="rtl"] * {
   font-family: inherit;
+  /* Cairo has no true italic face; a synthetic slant breaks Arabic glyph
+     joining (letters render disconnected/cut), so the serif accent's
+     italic treatment is English-only. */
+  font-style: normal;
 }
 
 /* Mesh + grid backdrop */
