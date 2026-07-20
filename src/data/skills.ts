@@ -8,7 +8,7 @@ export const skillsData = {
   backend: [
     { name: "PHP", icon: "🐘" },
     { name: "Laravel", icon: "🚂" },
-    { name: "Python", icon: "🐍" },
+    { name: "REST API", icon: "🔌" },
     { name: "MySQL", icon: "💾" },
   ],
   tools: [
