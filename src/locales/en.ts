@@ -23,9 +23,9 @@ export const en = {
     greeting: "Hi, I'm",
     logoSlug: "ahmedalaa",
     name: "Ahmed Alaa",
-    title: "Full-Stack Web Developer",
+    title: "PHP Laravel Backend Developer",
     description:
-      "Applying engineering thinking to build reliable and scalable full-stack web applications. Clean architecture, performance, and maintainability first.",
+      "Applying engineering thinking to build reliable and scalable backend systems with PHP and Laravel. Clean architecture, performance, and maintainability first.",
     viewProjects: "View Projects",
     availability: "Available for new opportunities",
     scrollExplore: "Scroll to explore",
@@ -86,7 +86,7 @@ export const en = {
         description:
           "A modern housing and apartment management platform that streamlines student accommodation bookings, apartment management, media handling, and operational workflows.",
         fullDescription:
-          "Shehab Housing Platform is a full-stack web application built to simplify the entire accommodation management process for students and administrators. The platform includes apartment listings, room and bed management, booking workflows, role-based dashboards, media management, invoice/payment integration, and admin control panels. It focuses on scalability, clean UX, operational efficiency, and a premium responsive interface tailored for real-world housing operations.",
+          "Shehab Housing Platform is a Laravel-powered web application built to simplify the entire accommodation management process for students and administrators. The platform includes apartment listings, room and bed management, booking workflows, role-based dashboards, media management, invoice/payment integration, and admin control panels. It focuses on scalability, clean UX, operational efficiency, and a premium responsive interface tailored for real-world housing operations.",
       },
       taskr: {
         title: "TASKR - Task Management",
@@ -113,7 +113,7 @@ export const en = {
     title: "About",
     titleHighlight: "Me",
     intro: "I'm a passionate",
-    role: "Full-Stack Web Developer",
+    role: "PHP Laravel Backend Developer",
     introText:
       "with a strong engineering background and a passion for building clean, scalable, and user-friendly web applications.",
     specialize:
@@ -206,7 +206,7 @@ export const en = {
   experience: {
     title: "My",
     titleHighlight: "Journey",
-    subtitle: "From my start in 2024 to today — full-stack delivery with a focus on quality.",
+    subtitle: "From my start in 2024 to today — backend delivery with a focus on quality.",
     nowLabel: "Now",
     milestones: [
       {
@@ -215,11 +215,11 @@ export const en = {
       },
       {
         year: "2025",
-        text: "Moved into full-stack web development, specializing in PHP and Laravel while building real-world applications and strengthening backend skills.",
+        text: "Moved into backend web development, specializing in PHP and Laravel while building real-world applications and deepening my backend expertise.",
       },
       {
         year: "2026",
-        text: "Continuing to build end-to-end web products; open to new roles and long-term collaborations.",
+        text: "Continuing to build robust backend systems; open to new roles and long-term collaborations.",
       },
     ],
   },

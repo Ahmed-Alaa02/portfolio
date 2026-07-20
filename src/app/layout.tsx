@@ -22,15 +22,16 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "Ahmed Alaa | Full-Stack Developer",
+  title: "Ahmed Alaa | PHP Laravel Backend Developer",
   description:
-    "Modern developer portfolio showcasing frontend and full-stack web projects with cutting-edge technologies.",
+    "Modern developer portfolio showcasing PHP and Laravel backend web projects with cutting-edge technologies.",
   keywords: [
-    "frontend developer",
-    "full-stack developer",
+    "backend developer",
+    "PHP developer",
+    "Laravel developer",
     "web development",
-    "React",
-    "Next.js",
+    "MySQL",
+    "REST API",
     "portfolio",
   ],
   icons: {
@@ -38,9 +39,9 @@ export const metadata: Metadata = {
   },
   authors: [{ name: "Ahmed Alaa" }],
   openGraph: {
-    title: "Ahmed Alaa | Full-Stack Developer",
+    title: "Ahmed Alaa | PHP Laravel Backend Developer",
     description:
-      "Modern developer portfolio showcasing frontend and full-stack web projects",
+      "Modern developer portfolio showcasing PHP and Laravel backend web projects",
     type: "website",
   },
 };

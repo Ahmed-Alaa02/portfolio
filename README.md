@@ -140,4 +140,4 @@ Feel free to reach out if you have any questions or suggestions!
 
 # portfolio
 
-Personal portfolio website showcasing my projects, skills, and experience as a full-stack developer.
+Personal portfolio website showcasing my projects, skills, and experience as a PHP Laravel backend developer.
